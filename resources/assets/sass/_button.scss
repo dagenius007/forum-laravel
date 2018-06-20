@@ -1,0 +1,20 @@
+.btn{
+    color:$base-color;
+    &--primary{
+        background-color: $bg-color;
+        &:hover{
+            color:$primary-color;
+        }
+    }
+    &--lg{
+        padding: 10px 36px;
+        font-size: 1.2em;
+    }
+    &--gradient{
+        background: linear-gradient(to bottom right,#0A0A8D, #4D1A80);
+        text-transform: uppercase;
+        color: white;
+        border-radius: 5px;
+    }
+    
+}
