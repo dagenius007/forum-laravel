@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.7.2
+-- version 4.7.7
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:8889
--- Generation Time: Jun 13, 2018 at 02:45 PM
--- Server version: 5.6.35
--- PHP Version: 7.1.6
+-- Generation Time: Jul 25, 2018 at 01:37 PM
+-- Server version: 5.6.38
+-- PHP Version: 7.1.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -35,9 +35,11 @@ CREATE TABLE `activities` (
 --
 
 INSERT INTO `activities` (`id`, `user_id`, `subject_id`, `subject_type`, `type`, `created_at`, `updated_at`) VALUES
-(2, 1, 4, 'App\\Thread', 'created_thread', '2018-06-10 11:10:48', '2018-06-10 11:10:48'),
-(3, 1, 5, 'App\\Thread', 'created_thread', '2018-06-10 11:12:29', '2018-06-10 11:12:29'),
-(4, 1, 1, 'App\\Reply', 'created_reply', '2018-06-12 10:04:46', '2018-06-12 10:04:46');
+(21, 43, 11, 'App\\Thread', 'created_thread', '2018-07-25 02:15:52', '2018-07-25 02:15:52'),
+(22, 43, 12, 'App\\Thread', 'created_thread', '2018-07-25 02:17:09', '2018-07-25 02:17:09'),
+(23, 43, 13, 'App\\Reply', 'created_reply', '2018-07-25 02:19:33', '2018-07-25 02:19:33'),
+(24, 43, 14, 'App\\Reply', 'created_reply', '2018-07-25 04:46:37', '2018-07-25 04:46:37'),
+(25, 44, 15, 'App\\Reply', 'created_reply', '2018-07-25 05:25:08', '2018-07-25 05:25:08');
 
 -- --------------------------------------------------------
 
@@ -82,110 +84,20 @@ CREATE TABLE `channels` (
 --
 
 INSERT INTO `channels` (`id`, `name`, `slug`, `created_at`, `updated_at`) VALUES
-(2, 'tempora', 'tempora', '2018-06-09 11:05:13', '2018-06-09 11:05:13'),
-(3, 'eos', 'eos', '2018-06-09 11:05:13', '2018-06-09 11:05:13'),
-(4, 'qui', 'qui', '2018-06-09 11:05:13', '2018-06-09 11:05:13'),
-(5, 'eligendi', 'eligendi', '2018-06-09 11:05:13', '2018-06-09 11:05:13'),
+(5, 'eligendin', 'eligendi', '2018-06-09 11:05:13', '2018-07-18 14:25:33'),
 (6, 'veritatis', 'veritatis', '2018-06-09 11:05:13', '2018-06-09 11:05:13'),
-(7, 'sed', 'sed', '2018-06-09 11:05:13', '2018-06-09 11:05:13'),
 (8, 'dolor', 'dolor', '2018-06-09 11:05:13', '2018-06-09 11:05:13'),
 (9, 'dolores', 'dolores', '2018-06-09 11:05:13', '2018-06-09 11:05:13'),
 (10, 'nam', 'nam', '2018-06-09 11:05:13', '2018-06-09 11:05:13'),
 (11, 'rerum', 'rerum', '2018-06-09 11:05:13', '2018-06-09 11:05:13'),
 (12, 'molestiae', 'molestiae', '2018-06-09 11:11:10', '2018-06-09 11:11:10'),
 (13, 'dolore', 'dolore', '2018-06-09 11:11:10', '2018-06-09 11:11:10'),
-(14, 'quia', 'quia', '2018-06-09 11:13:15', '2018-06-09 11:13:15'),
-(15, 'enim', 'enim', '2018-06-09 11:13:15', '2018-06-09 11:13:15'),
-(16, 'quos', 'quos', '2018-06-09 11:13:31', '2018-06-09 11:13:31'),
+(14, 'quiaz', 'quia', '2018-06-09 11:13:15', '2018-07-16 20:16:01'),
 (17, 'mollitia', 'mollitia', '2018-06-09 11:13:31', '2018-06-09 11:13:31'),
 (18, 'ut', 'ut', '2018-06-09 11:13:56', '2018-06-09 11:13:56'),
 (19, 'earum', 'earum', '2018-06-09 11:13:56', '2018-06-09 11:13:56'),
-(20, 'repellat', 'repellat', '2018-06-09 11:14:04', '2018-06-09 11:14:04'),
-(21, 'ullam', 'ullam', '2018-06-09 11:14:04', '2018-06-09 11:14:04');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `data_rows`
---
-
-CREATE TABLE `data_rows` (
-  `id` int(10) UNSIGNED NOT NULL,
-  `data_type_id` int(10) UNSIGNED NOT NULL,
-  `field` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `type` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `display_name` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `required` tinyint(1) NOT NULL DEFAULT '0',
-  `browse` tinyint(1) NOT NULL DEFAULT '1',
-  `read` tinyint(1) NOT NULL DEFAULT '1',
-  `edit` tinyint(1) NOT NULL DEFAULT '1',
-  `add` tinyint(1) NOT NULL DEFAULT '1',
-  `delete` tinyint(1) NOT NULL DEFAULT '1',
-  `details` text COLLATE utf8mb4_unicode_ci,
-  `order` int(11) NOT NULL DEFAULT '1'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Dumping data for table `data_rows`
---
-
-INSERT INTO `data_rows` (`id`, `data_type_id`, `field`, `type`, `display_name`, `required`, `browse`, `read`, `edit`, `add`, `delete`, `details`, `order`) VALUES
-(1, 1, 'id', 'number', 'ID', 1, 0, 0, 0, 0, 0, '', 1),
-(2, 1, 'name', 'text', 'Name', 1, 1, 1, 1, 1, 1, '', 2),
-(3, 1, 'email', 'text', 'Email', 1, 1, 1, 1, 1, 1, '', 3),
-(4, 1, 'password', 'password', 'Password', 1, 0, 0, 1, 1, 0, '', 4),
-(5, 1, 'remember_token', 'text', 'Remember Token', 0, 0, 0, 0, 0, 0, '', 5),
-(6, 1, 'created_at', 'timestamp', 'Created At', 0, 1, 1, 0, 0, 0, '', 6),
-(7, 1, 'updated_at', 'timestamp', 'Updated At', 0, 0, 0, 0, 0, 0, '', 7),
-(8, 1, 'avatar', 'image', 'Avatar', 0, 1, 1, 1, 1, 1, '', 8),
-(9, 1, 'user_belongsto_role_relationship', 'relationship', 'Role', 0, 1, 1, 1, 1, 0, '{\"model\":\"TCG\\\\Voyager\\\\Models\\\\Role\",\"table\":\"roles\",\"type\":\"belongsTo\",\"column\":\"role_id\",\"key\":\"id\",\"label\":\"display_name\",\"pivot_table\":\"roles\",\"pivot\":\"0\"}', 10),
-(10, 1, 'user_belongstomany_role_relationship', 'relationship', 'Roles', 0, 1, 1, 1, 1, 0, '{\"model\":\"TCG\\\\Voyager\\\\Models\\\\Role\",\"table\":\"roles\",\"type\":\"belongsToMany\",\"column\":\"id\",\"key\":\"id\",\"label\":\"display_name\",\"pivot_table\":\"user_roles\",\"pivot\":\"1\",\"taggable\":\"0\"}', 11),
-(11, 1, 'locale', 'text', 'Locale', 0, 1, 1, 1, 1, 0, '', 12),
-(12, 1, 'settings', 'hidden', 'Settings', 0, 0, 0, 0, 0, 0, '', 12),
-(13, 2, 'id', 'number', 'ID', 1, 0, 0, 0, 0, 0, '', 1),
-(14, 2, 'name', 'text', 'Name', 1, 1, 1, 1, 1, 1, '', 2),
-(15, 2, 'created_at', 'timestamp', 'Created At', 0, 0, 0, 0, 0, 0, '', 3),
-(16, 2, 'updated_at', 'timestamp', 'Updated At', 0, 0, 0, 0, 0, 0, '', 4),
-(17, 3, 'id', 'number', 'ID', 1, 0, 0, 0, 0, 0, '', 1),
-(18, 3, 'name', 'text', 'Name', 1, 1, 1, 1, 1, 1, '', 2),
-(19, 3, 'created_at', 'timestamp', 'Created At', 0, 0, 0, 0, 0, 0, '', 3),
-(20, 3, 'updated_at', 'timestamp', 'Updated At', 0, 0, 0, 0, 0, 0, '', 4),
-(21, 3, 'display_name', 'text', 'Display Name', 1, 1, 1, 1, 1, 1, '', 5),
-(22, 1, 'role_id', 'text', 'Role', 1, 1, 1, 1, 1, 1, '', 9),
-(23, 4, 'id', 'number', 'ID', 1, 0, 0, 0, 0, 0, '', 1),
-(24, 4, 'parent_id', 'select_dropdown', 'Parent', 0, 0, 1, 1, 1, 1, '{\"default\":\"\",\"null\":\"\",\"options\":{\"\":\"-- None --\"},\"relationship\":{\"key\":\"id\",\"label\":\"name\"}}', 2),
-(25, 4, 'order', 'text', 'Order', 1, 1, 1, 1, 1, 1, '{\"default\":1}', 3),
-(26, 4, 'name', 'text', 'Name', 1, 1, 1, 1, 1, 1, '', 4),
-(27, 4, 'slug', 'text', 'Slug', 1, 1, 1, 1, 1, 1, '{\"slugify\":{\"origin\":\"name\"}}', 5),
-(28, 4, 'created_at', 'timestamp', 'Created At', 0, 0, 1, 0, 0, 0, '', 6),
-(29, 4, 'updated_at', 'timestamp', 'Updated At', 0, 0, 0, 0, 0, 0, '', 7),
-(30, 5, 'id', 'number', 'ID', 1, 0, 0, 0, 0, 0, '', 1),
-(31, 5, 'author_id', 'text', 'Author', 1, 0, 1, 1, 0, 1, '', 2),
-(32, 5, 'category_id', 'text', 'Category', 1, 0, 1, 1, 1, 0, '', 3),
-(33, 5, 'title', 'text', 'Title', 1, 1, 1, 1, 1, 1, '', 4),
-(34, 5, 'excerpt', 'text_area', 'Excerpt', 1, 0, 1, 1, 1, 1, '', 5),
-(35, 5, 'body', 'rich_text_box', 'Body', 1, 0, 1, 1, 1, 1, '', 6),
-(36, 5, 'image', 'image', 'Post Image', 0, 1, 1, 1, 1, 1, '{\"resize\":{\"width\":\"1000\",\"height\":\"null\"},\"quality\":\"70%\",\"upsize\":true,\"thumbnails\":[{\"name\":\"medium\",\"scale\":\"50%\"},{\"name\":\"small\",\"scale\":\"25%\"},{\"name\":\"cropped\",\"crop\":{\"width\":\"300\",\"height\":\"250\"}}]}', 7),
-(37, 5, 'slug', 'text', 'Slug', 1, 0, 1, 1, 1, 1, '{\"slugify\":{\"origin\":\"title\",\"forceUpdate\":true},\"validation\":{\"rule\":\"unique:posts,slug\"}}', 8),
-(38, 5, 'meta_description', 'text_area', 'Meta Description', 1, 0, 1, 1, 1, 1, '', 9),
-(39, 5, 'meta_keywords', 'text_area', 'Meta Keywords', 1, 0, 1, 1, 1, 1, '', 10),
-(40, 5, 'status', 'select_dropdown', 'Status', 1, 1, 1, 1, 1, 1, '{\"default\":\"DRAFT\",\"options\":{\"PUBLISHED\":\"published\",\"DRAFT\":\"draft\",\"PENDING\":\"pending\"}}', 11),
-(41, 5, 'created_at', 'timestamp', 'Created At', 0, 1, 1, 0, 0, 0, '', 12),
-(42, 5, 'updated_at', 'timestamp', 'Updated At', 0, 0, 0, 0, 0, 0, '', 13),
-(43, 5, 'seo_title', 'text', 'SEO Title', 0, 1, 1, 1, 1, 1, '', 14),
-(44, 5, 'featured', 'checkbox', 'Featured', 1, 1, 1, 1, 1, 1, '', 15),
-(45, 6, 'id', 'number', 'ID', 1, 0, 0, 0, 0, 0, '', 1),
-(46, 6, 'author_id', 'text', 'Author', 1, 0, 0, 0, 0, 0, '', 2),
-(47, 6, 'title', 'text', 'Title', 1, 1, 1, 1, 1, 1, '', 3),
-(48, 6, 'excerpt', 'text_area', 'Excerpt', 1, 0, 1, 1, 1, 1, '', 4),
-(49, 6, 'body', 'rich_text_box', 'Body', 1, 0, 1, 1, 1, 1, '', 5),
-(50, 6, 'slug', 'text', 'Slug', 1, 0, 1, 1, 1, 1, '{\"slugify\":{\"origin\":\"title\"},\"validation\":{\"rule\":\"unique:pages,slug\"}}', 6),
-(51, 6, 'meta_description', 'text', 'Meta Description', 1, 0, 1, 1, 1, 1, '', 7),
-(52, 6, 'meta_keywords', 'text', 'Meta Keywords', 1, 0, 1, 1, 1, 1, '', 8),
-(53, 6, 'status', 'select_dropdown', 'Status', 1, 1, 1, 1, 1, 1, '{\"default\":\"INACTIVE\",\"options\":{\"INACTIVE\":\"INACTIVE\",\"ACTIVE\":\"ACTIVE\"}}', 9),
-(54, 6, 'created_at', 'timestamp', 'Created At', 1, 1, 1, 0, 0, 0, '', 10),
-(55, 6, 'updated_at', 'timestamp', 'Updated At', 1, 0, 0, 0, 0, 0, '', 11),
-(56, 6, 'image', 'image', 'Page Image', 0, 1, 1, 1, 1, 1, '', 12);
+(20, 'Sports', 'Sports', '2018-07-18 15:46:40', '2018-07-18 15:46:40'),
+(21, 'samt', 'samt', '2018-07-18 15:53:26', '2018-07-18 15:53:26');
 
 -- --------------------------------------------------------
 
@@ -244,6 +156,28 @@ CREATE TABLE `favorites` (
 
 INSERT INTO `favorites` (`id`, `user_id`, `favorited_id`, `favorited_type`, `created_at`, `updated_at`) VALUES
 (1, 1, 1, 'App\\Reply', '2018-06-12 10:04:50', '2018-06-12 10:04:50');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `followers`
+--
+
+CREATE TABLE `followers` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `follower_id` int(10) UNSIGNED NOT NULL,
+  `user_id` int(10) UNSIGNED NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `followers`
+--
+
+INSERT INTO `followers` (`id`, `follower_id`, `user_id`, `created_at`, `updated_at`) VALUES
+(19, 16, 21, '2018-07-24 01:25:32', '2018-07-24 01:25:32'),
+(20, 41, 21, '2018-07-24 01:54:09', '2018-07-24 01:54:09');
 
 -- --------------------------------------------------------
 
@@ -336,30 +270,15 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (10, '2018_05_31_235807_add_category_to_threads', 2),
 (12, '2018_06_09_092918_add_image_to_threads', 3),
 (13, '2018_06_09_220227_drop_age_column_from_threads', 4),
-(14, '2016_01_01_000000_add_voyager_user_fields', 5),
-(15, '2016_01_01_000000_create_data_types_table', 5),
-(16, '2016_05_19_173453_create_menu_table', 5),
-(17, '2016_10_21_190000_create_roles_table', 5),
-(18, '2016_10_21_190000_create_settings_table', 5),
-(19, '2016_11_30_135954_create_permission_table', 5),
-(20, '2016_11_30_141208_create_permission_role_table', 5),
-(21, '2016_12_26_201236_data_types__add__server_side', 5),
-(22, '2017_01_13_000000_add_route_to_menu_items_table', 5),
-(23, '2017_01_14_005015_create_translations_table', 5),
-(24, '2017_01_15_000000_make_table_name_nullable_in_permissions_table', 5),
-(25, '2017_03_06_000000_add_controller_to_data_types_table', 5),
-(26, '2017_04_21_000000_add_order_to_data_rows_table', 5),
-(27, '2017_07_05_210000_add_policyname_to_data_types_table', 5),
-(28, '2017_08_05_000000_add_group_to_settings_table', 5),
-(29, '2017_11_26_013050_add_user_role_relationship', 5),
-(30, '2017_11_26_015000_create_user_roles_table', 5),
-(31, '2018_03_11_000000_add_user_settings', 5),
-(32, '2018_03_14_000000_add_details_to_data_types_table', 5),
-(33, '2018_03_16_000000_make_settings_value_nullable', 5),
-(34, '2016_01_01_000000_create_pages_table', 6),
-(35, '2016_01_01_000000_create_posts_table', 6),
 (36, '2016_02_15_204651_create_categories_table', 6),
-(37, '2017_04_11_000000_alter_post_nullable_fields_table', 6);
+(37, '2017_04_11_000000_alter_post_nullable_fields_table', 6),
+(38, '2018_07_09_104307_create_followers_table', 7),
+(41, '2018_07_09_180723_create_table_followers', 8),
+(42, '2018_07_17_072205_create_sessions_table', 8),
+(47, '2018_07_21_231043_add_role_id_and_displaypicture_to_users', 9),
+(48, '2018_07_21_232621_create_roles_tables', 9),
+(49, '2018_07_25_030644_drop_display_image_from_users', 10),
+(50, '2018_07_25_030929_add_display_picture_in_users', 11);
 
 -- --------------------------------------------------------
 
@@ -417,6 +336,13 @@ CREATE TABLE `password_resets` (
   `token` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `password_resets`
+--
+
+INSERT INTO `password_resets` (`email`, `token`, `created_at`) VALUES
+('joshuaoluikpe@gmail.com', '$2y$10$GNS5zj3jmz7zvhMbKQ9dJes8TTT6PBjuT6uGh5SvAqhjX1SwYmDKS', '2018-07-19 05:52:33');
 
 -- --------------------------------------------------------
 
@@ -482,63 +408,6 @@ INSERT INTO `permissions` (`id`, `key`, `table_name`, `created_at`, `updated_at`
 -- --------------------------------------------------------
 
 --
--- Table structure for table `permission_role`
---
-
-CREATE TABLE `permission_role` (
-  `permission_id` int(10) UNSIGNED NOT NULL,
-  `role_id` int(10) UNSIGNED NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Dumping data for table `permission_role`
---
-
-INSERT INTO `permission_role` (`permission_id`, `role_id`) VALUES
-(1, 1),
-(2, 1),
-(3, 1),
-(4, 1),
-(5, 1),
-(6, 1),
-(7, 1),
-(8, 1),
-(9, 1),
-(10, 1),
-(11, 1),
-(12, 1),
-(13, 1),
-(14, 1),
-(15, 1),
-(16, 1),
-(17, 1),
-(18, 1),
-(19, 1),
-(20, 1),
-(21, 1),
-(22, 1),
-(23, 1),
-(24, 1),
-(25, 1),
-(26, 1),
-(27, 1),
-(28, 1),
-(29, 1),
-(30, 1),
-(31, 1),
-(32, 1),
-(33, 1),
-(34, 1),
-(35, 1),
-(36, 1),
-(37, 1),
-(38, 1),
-(39, 1),
-(40, 1);
-
--- --------------------------------------------------------
-
---
 -- Table structure for table `posts`
 --
 
@@ -590,7 +459,9 @@ CREATE TABLE `replies` (
 --
 
 INSERT INTO `replies` (`id`, `thread_id`, `user_id`, `body`, `created_at`, `updated_at`) VALUES
-(1, 1, 1, 'wqdhsbdhbdhe', '2018-06-12 10:04:46', '2018-06-12 10:04:46');
+(13, 12, 43, 'Fell free man', '2018-07-25 02:19:33', '2018-07-25 02:19:44'),
+(14, 11, 43, 'bravo', '2018-07-25 04:46:37', '2018-07-25 04:46:37'),
+(15, 12, 44, 'Welldone', '2018-07-25 05:25:08', '2018-07-25 05:25:08');
 
 -- --------------------------------------------------------
 
@@ -600,19 +471,36 @@ INSERT INTO `replies` (`id`, `thread_id`, `user_id`, `body`, `created_at`, `upda
 
 CREATE TABLE `roles` (
   `id` int(10) UNSIGNED NOT NULL,
-  `name` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `display_name` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `role` int(10) UNSIGNED NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+-- --------------------------------------------------------
+
 --
--- Dumping data for table `roles`
+-- Table structure for table `sessions`
 --
 
-INSERT INTO `roles` (`id`, `name`, `display_name`, `created_at`, `updated_at`) VALUES
-(1, 'admin', 'Administrator', '2018-06-10 14:33:22', '2018-06-10 14:33:22'),
-(2, 'user', 'Normal User', '2018-06-10 14:33:22', '2018-06-10 14:33:22');
+CREATE TABLE `sessions` (
+  `id` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `user_id` int(10) UNSIGNED DEFAULT NULL,
+  `ip_address` varchar(45) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `user_agent` text COLLATE utf8mb4_unicode_ci,
+  `payload` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `last_activity` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `sessions`
+--
+
+INSERT INTO `sessions` (`id`, `user_id`, `ip_address`, `user_agent`, `payload`, `last_activity`) VALUES
+('HLnT61d3GdBY4WOULxJGrAPbl46PhUuJI8RVDOIq', NULL, '127.0.0.1', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/67.0.3396.99 Safari/537.36', 'YTo0OntzOjY6Il90b2tlbiI7czo0MDoiRmZtT1V1WkJJeUlSWmF0TVd2VWx5bGo5OUNtNTRBbjd2VlAyd3pTdCI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6MjE6Imh0dHA6Ly9sb2NhbGhvc3Q6ODAwMCI7fXM6MjI6IlBIUERFQlVHQkFSX1NUQUNLX0RBVEEiO2E6MDp7fXM6NjoiX2ZsYXNoIjthOjI6e3M6Mzoib2xkIjthOjA6e31zOjM6Im5ldyI7YTowOnt9fX0=', 1532518417),
+('LAnXaJSrVOR4BZYS4ER5wG0PtZ1EQrrTHGntMpGc', 43, '127.0.0.1', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/67.0.3396.99 Safari/537.36', 'YTo1OntzOjY6Il9mbGFzaCI7YToyOntzOjM6Im9sZCI7YTowOnt9czozOiJuZXciO2E6MDp7fX1zOjY6Il90b2tlbiI7czo0MDoidUhoWFp2d09Nb29jZFZFRGx4TUY2VEt0amx6c0ozYm9kcXRiMjdFZiI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6MjY6Imh0dHA6Ly9sb2NhbGhvc3Q6ODAwMC9ob21lIjt9czo1MDoibG9naW5fd2ViXzU5YmEzNmFkZGMyYjJmOTQwMTU4MGYwMTRjN2Y1OGVhNGUzMDk4OWQiO2k6NDM7czoyMjoiUEhQREVCVUdCQVJfU1RBQ0tfREFUQSI7YTowOnt9fQ==', 1532505184),
+('qZTmf9zI10hdJKKEDBbMunFXKFpHBx9ZMzDbhn8G', 44, '127.0.0.1', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_6) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/11.1.2 Safari/605.1.15', 'YTo1OntzOjY6Il90b2tlbiI7czo0MDoiS1hKVzNHbnR1bzNXNHp4b0llVFNjVGphc1JlZG1iV1BlU01sVDMxUyI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6Mzg6Imh0dHA6Ly9sb2NhbGhvc3Q6ODAwMC90aHJlYWRzL3JlcnVtLzEyIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319czo1MDoibG9naW5fd2ViXzU5YmEzNmFkZGMyYjJmOTQwMTU4MGYwMTRjN2Y1OGVhNGUzMDk4OWQiO2k6NDQ7czoyMjoiUEhQREVCVUdCQVJfU1RBQ0tfREFUQSI7YTowOnt9fQ==', 1532503785),
+('TOuqpblFbXV1tdQAuGhPT68beTT8V4InzKYaNVPY', NULL, '127.0.0.1', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_6) AppleWebKit/605.1.15 (KHTML, like Gecko)', 'YTo0OntzOjY6Il90b2tlbiI7czo0MDoiV3pqNmJFNEdOTGVBcnpTOGZ1WmNrNDY2U1J2YXluc2dLc1hzc3c4biI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6MjE6Imh0dHA6Ly9sb2NhbGhvc3Q6ODAwMCI7fXM6MjI6IlBIUERFQlVHQkFSX1NUQUNLX0RBVEEiO2E6MDp7fXM6NjoiX2ZsYXNoIjthOjI6e3M6Mzoib2xkIjthOjA6e31zOjM6Im5ldyI7YTowOnt9fX0=', 1532499788),
+('VQiRjrCoH81DY8fp2OMuzLuqedmQN5uu88mvTPTs', NULL, '127.0.0.1', '\"Mozilla/5.0 (iPhone; CPU iPhone OS 11_0 like Mac OS X) AppleWebKit/604.1.38 (KHTML, like Gecko) Version/11.0 Mobile/15A372 Safari/604.1\"', 'YTo0OntzOjY6Il90b2tlbiI7czo0MDoiY2V0aUJuUlJ2cjVpbUNNejFCY2RnYXphUVpWU3pwemNKUlAzbm9EZyI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6MjE6Imh0dHA6Ly9sb2NhbGhvc3Q6ODAwMCI7fXM6MjI6IlBIUERFQlVHQkFSX1NUQUNLX0RBVEEiO2E6MDp7fXM6NjoiX2ZsYXNoIjthOjI6e3M6Mzoib2xkIjthOjA6e31zOjM6Im5ldyI7YTowOnt9fX0=', 1532499788);
 
 -- --------------------------------------------------------
 
@@ -670,10 +558,8 @@ CREATE TABLE `threads` (
 --
 
 INSERT INTO `threads` (`id`, `user_id`, `channel_id`, `replies_count`, `title`, `body`, `created_at`, `updated_at`, `thread_img`) VALUES
-(1, 10, 20, 1, 'Dolorum soluta asperiores et praesentium est voluptatem.', 'Ad enim voluptatem dolores dolor quam dolor qui temporibus. Autem omnis qui et. Est culpa aut quia iusto voluptas ullam. Et consectetur totam doloremque ab dicta pariatur.', '2018-06-09 11:14:04', '2018-06-12 10:04:46', ''),
-(2, 11, 21, 0, 'Minus dignissimos tempora ullam provident molestias placeat.', 'Assumenda dolorem facilis quia eveniet aperiam. Quo sint corporis et praesentium quisquam voluptatem tempore. Totam porro reiciendis dolorem incidunt laboriosam.', '2018-06-09 11:14:04', '2018-06-09 11:14:04', ''),
-(4, 1, 3, 0, 'Because I love you', 'pls pls pls', '2018-06-10 11:10:48', '2018-06-10 11:10:48', '1528632648.png'),
-(5, 1, 5, 0, 'Why always useee', 'skanjabjbdschj bchjdsbchds bbscjbsjcbdcedc sbndj', '2018-06-10 11:12:29', '2018-06-13 09:52:17', '1528841908.jpg');
+(11, 43, 6, 1, 'insight publcis', 'dgsvfgDSVCDSNC SCXbashcxb sadCHSDCLS KDCMSDK', '2018-07-25 02:15:52', '2018-07-25 04:46:37', '1532488552.jpeg'),
+(12, 43, 11, 2, 'Thought', 'ahdsbcsdn cms DNJabdc dmscjnd schjgsvdb', '2018-07-25 02:17:09', '2018-07-25 05:25:08', '1532488629.jpg');
 
 -- --------------------------------------------------------
 
@@ -692,102 +578,29 @@ CREATE TABLE `thread_subscriptions` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `translations`
---
-
-CREATE TABLE `translations` (
-  `id` int(10) UNSIGNED NOT NULL,
-  `table_name` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `column_name` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `foreign_key` int(10) UNSIGNED NOT NULL,
-  `locale` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `value` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Dumping data for table `translations`
---
-
-INSERT INTO `translations` (`id`, `table_name`, `column_name`, `foreign_key`, `locale`, `value`, `created_at`, `updated_at`) VALUES
-(1, 'data_types', 'display_name_singular', 5, 'pt', 'Post', '2018-06-10 14:33:23', '2018-06-10 14:33:23'),
-(2, 'data_types', 'display_name_singular', 6, 'pt', 'Página', '2018-06-10 14:33:23', '2018-06-10 14:33:23'),
-(3, 'data_types', 'display_name_singular', 1, 'pt', 'Utilizador', '2018-06-10 14:33:23', '2018-06-10 14:33:23'),
-(4, 'data_types', 'display_name_singular', 4, 'pt', 'Categoria', '2018-06-10 14:33:23', '2018-06-10 14:33:23'),
-(5, 'data_types', 'display_name_singular', 2, 'pt', 'Menu', '2018-06-10 14:33:23', '2018-06-10 14:33:23'),
-(6, 'data_types', 'display_name_singular', 3, 'pt', 'Função', '2018-06-10 14:33:23', '2018-06-10 14:33:23'),
-(7, 'data_types', 'display_name_plural', 5, 'pt', 'Posts', '2018-06-10 14:33:23', '2018-06-10 14:33:23'),
-(8, 'data_types', 'display_name_plural', 6, 'pt', 'Páginas', '2018-06-10 14:33:23', '2018-06-10 14:33:23'),
-(9, 'data_types', 'display_name_plural', 1, 'pt', 'Utilizadores', '2018-06-10 14:33:23', '2018-06-10 14:33:23'),
-(10, 'data_types', 'display_name_plural', 4, 'pt', 'Categorias', '2018-06-10 14:33:23', '2018-06-10 14:33:23'),
-(11, 'data_types', 'display_name_plural', 2, 'pt', 'Menus', '2018-06-10 14:33:23', '2018-06-10 14:33:23'),
-(12, 'data_types', 'display_name_plural', 3, 'pt', 'Funções', '2018-06-10 14:33:23', '2018-06-10 14:33:23'),
-(13, 'categories', 'slug', 1, 'pt', 'categoria-1', '2018-06-10 14:33:23', '2018-06-10 14:33:23'),
-(14, 'categories', 'name', 1, 'pt', 'Categoria 1', '2018-06-10 14:33:23', '2018-06-10 14:33:23'),
-(15, 'categories', 'slug', 2, 'pt', 'categoria-2', '2018-06-10 14:33:23', '2018-06-10 14:33:23'),
-(16, 'categories', 'name', 2, 'pt', 'Categoria 2', '2018-06-10 14:33:23', '2018-06-10 14:33:23'),
-(17, 'pages', 'title', 1, 'pt', 'Olá Mundo', '2018-06-10 14:33:23', '2018-06-10 14:33:23'),
-(18, 'pages', 'slug', 1, 'pt', 'ola-mundo', '2018-06-10 14:33:23', '2018-06-10 14:33:23'),
-(19, 'pages', 'body', 1, 'pt', '<p>Olá Mundo. Scallywag grog swab Cat o\'nine tails scuttle rigging hardtack cable nipper Yellow Jack. Handsomely spirits knave lad killick landlubber or just lubber deadlights chantey pinnace crack Jennys tea cup. Provost long clothes black spot Yellow Jack bilged on her anchor league lateen sail case shot lee tackle.</p>\r\n<p>Ballast spirits fluke topmast me quarterdeck schooner landlubber or just lubber gabion belaying pin. Pinnace stern galleon starboard warp carouser to go on account dance the hempen jig jolly boat measured fer yer chains. Man-of-war fire in the hole nipperkin handsomely doubloon barkadeer Brethren of the Coast gibbet driver squiffy.</p>', '2018-06-10 14:33:23', '2018-06-10 14:33:23'),
-(20, 'menu_items', 'title', 1, 'pt', 'Painel de Controle', '2018-06-10 14:33:23', '2018-06-10 14:33:23'),
-(21, 'menu_items', 'title', 2, 'pt', 'Media', '2018-06-10 14:33:23', '2018-06-10 14:33:23'),
-(22, 'menu_items', 'title', 12, 'pt', 'Publicações', '2018-06-10 14:33:23', '2018-06-10 14:33:23'),
-(23, 'menu_items', 'title', 3, 'pt', 'Utilizadores', '2018-06-10 14:33:23', '2018-06-10 14:33:23'),
-(24, 'menu_items', 'title', 11, 'pt', 'Categorias', '2018-06-10 14:33:23', '2018-06-10 14:33:23'),
-(25, 'menu_items', 'title', 13, 'pt', 'Páginas', '2018-06-10 14:33:23', '2018-06-10 14:33:23'),
-(26, 'menu_items', 'title', 4, 'pt', 'Funções', '2018-06-10 14:33:23', '2018-06-10 14:33:23'),
-(27, 'menu_items', 'title', 5, 'pt', 'Ferramentas', '2018-06-10 14:33:23', '2018-06-10 14:33:23'),
-(28, 'menu_items', 'title', 6, 'pt', 'Menus', '2018-06-10 14:33:23', '2018-06-10 14:33:23'),
-(29, 'menu_items', 'title', 7, 'pt', 'Base de dados', '2018-06-10 14:33:23', '2018-06-10 14:33:23'),
-(30, 'menu_items', 'title', 10, 'pt', 'Configurações', '2018-06-10 14:33:23', '2018-06-10 14:33:23');
-
--- --------------------------------------------------------
-
---
 -- Table structure for table `users`
 --
 
 CREATE TABLE `users` (
   `id` int(10) UNSIGNED NOT NULL,
-  `role_id` int(10) UNSIGNED DEFAULT NULL,
   `name` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `email` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `avatar` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT 'users/default.png',
   `password` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `remember_token` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `settings` text COLLATE utf8mb4_unicode_ci,
   `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `role_id` int(11) NOT NULL,
+  `display_img` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'avatar.png'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id`, `role_id`, `name`, `email`, `avatar`, `password`, `remember_token`, `settings`, `created_at`, `updated_at`) VALUES
-(1, NULL, 'Joshua Oluikpe', 'joshuaoluikpe@gmail.com', 'users/default.png', '$2y$10$lskfVNOVNJXsNL74wC394uDVClBg3fOAws/YPsHSzAb634Mcm0zwW', 'tPeh9SGatZ6XUwpOsT0Z2ZD4ioWfh3jl142po2LRDHdNrKzv5TqhhP0nQOhl', NULL, '2018-05-27 11:52:10', '2018-05-27 11:52:10'),
-(2, NULL, 'Noe Botsford', 'boyer.annabelle@example.com', 'users/default.png', '$2y$10$CbAi.oVAv7AHF16hwoKuEe7scUOg74hsOBk5Gq.qRA8dZdGnSsD/u', 'jRXA6xhiYu', NULL, '2018-06-09 11:11:10', '2018-06-09 11:11:10'),
-(3, NULL, 'Prof. Brendon Brekke III', 'yroberts@example.org', 'users/default.png', '$2y$10$CbAi.oVAv7AHF16hwoKuEe7scUOg74hsOBk5Gq.qRA8dZdGnSsD/u', 'FuQvEk3Wdz', NULL, '2018-06-09 11:11:10', '2018-06-09 11:11:10'),
-(4, NULL, 'Paula Batz', 'kgrant@example.net', 'users/default.png', '$2y$10$CbAi.oVAv7AHF16hwoKuEe7scUOg74hsOBk5Gq.qRA8dZdGnSsD/u', 'yLQwndsqZC', NULL, '2018-06-09 11:13:15', '2018-06-09 11:13:15'),
-(5, NULL, 'King Schmitt Sr.', 'katherine.zulauf@example.org', 'users/default.png', '$2y$10$CbAi.oVAv7AHF16hwoKuEe7scUOg74hsOBk5Gq.qRA8dZdGnSsD/u', 'owfhkA9bDa', NULL, '2018-06-09 11:13:15', '2018-06-09 11:13:15'),
-(6, NULL, 'Abe Gutmann', 'rose.farrell@example.com', 'users/default.png', '$2y$10$XKqpOcHaluSs50TNJrhXKO8L70gWmtgSEKPRTfagom5kR9VzJ34vy', 'GIyyZyldeO', NULL, '2018-06-09 11:13:31', '2018-06-09 11:13:31'),
-(7, NULL, 'Cayla Thompson', 'clarissa.lueilwitz@example.net', 'users/default.png', '$2y$10$XKqpOcHaluSs50TNJrhXKO8L70gWmtgSEKPRTfagom5kR9VzJ34vy', 'X1A0UPuxXQ', NULL, '2018-06-09 11:13:31', '2018-06-09 11:13:31'),
-(8, NULL, 'Jaunita Connelly', 'lester.schultz@example.net', 'users/default.png', '$2y$10$XKqpOcHaluSs50TNJrhXKO8L70gWmtgSEKPRTfagom5kR9VzJ34vy', 'BiV6HEGMV1', NULL, '2018-06-09 11:13:56', '2018-06-09 11:13:56'),
-(9, NULL, 'Alyson Buckridge', 'doug.hackett@example.net', 'users/default.png', '$2y$10$XKqpOcHaluSs50TNJrhXKO8L70gWmtgSEKPRTfagom5kR9VzJ34vy', 'chWWGrMLqJ', NULL, '2018-06-09 11:13:56', '2018-06-09 11:13:56'),
-(10, NULL, 'Prof. Abigail Upton', 'gaston51@example.org', 'users/default.png', '$2y$10$FghSvCdZyrBnKtqAt53g0OCWa7iJ3KI/7LNj91tUj0hPqhbbKLc3a', 'iB0ALJZCYQ', NULL, '2018-06-09 11:14:04', '2018-06-09 11:14:04'),
-(11, NULL, 'Mr. Camden Thiel Jr.', 'bbailey@example.org', 'users/default.png', '$2y$10$FghSvCdZyrBnKtqAt53g0OCWa7iJ3KI/7LNj91tUj0hPqhbbKLc3a', 'UNAcXANbm0', NULL, '2018-06-09 11:14:04', '2018-06-09 11:14:04');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `user_roles`
---
-
-CREATE TABLE `user_roles` (
-  `user_id` int(10) UNSIGNED NOT NULL,
-  `role_id` int(10) UNSIGNED NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+INSERT INTO `users` (`id`, `name`, `email`, `password`, `remember_token`, `settings`, `created_at`, `updated_at`, `role_id`, `display_img`) VALUES
+(43, 'Joshua Oluikpes', 'joshuaoluikpe@gmail.com', '$2y$10$asXqwCJKGNQmAdmhrjnik.2qAe7E/AFH7GlGs3Oa26SfzjlbXs2TC', 'iH4Du0WkCyxWf53791wkX0447y63iK8RYb2Mn3ExX4ruaHjEavtY4RAbi26j', NULL, '2018-07-25 02:11:25', '2018-07-25 02:15:09', 1, '1532488310.jpeg'),
+(44, 'Anga', 'ag@gmail.com', '$2y$10$DDhlxhk/d8AP4aALh.gVnObYDUDhapQP4UDtZU3OO/yANjoPQznbu', NULL, NULL, '2018-07-25 05:24:43', '2018-07-25 05:24:43', 1, 'avatar.png');
 
 --
 -- Indexes for dumped tables
@@ -816,13 +629,6 @@ ALTER TABLE `channels`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `data_rows`
---
-ALTER TABLE `data_rows`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `data_rows_data_type_id_foreign` (`data_type_id`);
-
---
 -- Indexes for table `data_types`
 --
 ALTER TABLE `data_types`
@@ -836,6 +642,12 @@ ALTER TABLE `data_types`
 ALTER TABLE `favorites`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `favorites_user_id_favorited_id_favorited_type_unique` (`user_id`,`favorited_id`,`favorited_type`);
+
+--
+-- Indexes for table `followers`
+--
+ALTER TABLE `followers`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `menus`
@@ -885,14 +697,6 @@ ALTER TABLE `permissions`
   ADD KEY `permissions_key_index` (`key`);
 
 --
--- Indexes for table `permission_role`
---
-ALTER TABLE `permission_role`
-  ADD PRIMARY KEY (`permission_id`,`role_id`),
-  ADD KEY `permission_role_permission_id_index` (`permission_id`),
-  ADD KEY `permission_role_role_id_index` (`role_id`);
-
---
 -- Indexes for table `posts`
 --
 ALTER TABLE `posts`
@@ -909,8 +713,13 @@ ALTER TABLE `replies`
 -- Indexes for table `roles`
 --
 ALTER TABLE `roles`
-  ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `roles_name_unique` (`name`);
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `sessions`
+--
+ALTER TABLE `sessions`
+  ADD UNIQUE KEY `sessions_id_unique` (`id`);
 
 --
 -- Indexes for table `settings`
@@ -934,27 +743,11 @@ ALTER TABLE `thread_subscriptions`
   ADD KEY `thread_subscriptions_thread_id_foreign` (`thread_id`);
 
 --
--- Indexes for table `translations`
---
-ALTER TABLE `translations`
-  ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `translations_table_name_column_name_foreign_key_locale_unique` (`table_name`,`column_name`,`foreign_key`,`locale`);
-
---
 -- Indexes for table `users`
 --
 ALTER TABLE `users`
   ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `users_email_unique` (`email`),
-  ADD KEY `users_role_id_foreign` (`role_id`);
-
---
--- Indexes for table `user_roles`
---
-ALTER TABLE `user_roles`
-  ADD PRIMARY KEY (`user_id`,`role_id`),
-  ADD KEY `user_roles_user_id_index` (`user_id`),
-  ADD KEY `user_roles_role_id_index` (`role_id`);
+  ADD UNIQUE KEY `users_email_unique` (`email`);
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -964,97 +757,110 @@ ALTER TABLE `user_roles`
 -- AUTO_INCREMENT for table `activities`
 --
 ALTER TABLE `activities`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
+
 --
 -- AUTO_INCREMENT for table `categories`
 --
 ALTER TABLE `categories`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
 --
 -- AUTO_INCREMENT for table `channels`
 --
 ALTER TABLE `channels`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
---
--- AUTO_INCREMENT for table `data_rows`
---
-ALTER TABLE `data_rows`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=57;
+
 --
 -- AUTO_INCREMENT for table `data_types`
 --
 ALTER TABLE `data_types`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
 --
 -- AUTO_INCREMENT for table `favorites`
 --
 ALTER TABLE `favorites`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT for table `followers`
+--
+ALTER TABLE `followers`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+
 --
 -- AUTO_INCREMENT for table `menus`
 --
 ALTER TABLE `menus`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
 --
 -- AUTO_INCREMENT for table `menu_items`
 --
 ALTER TABLE `menu_items`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+
 --
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=51;
+
 --
 -- AUTO_INCREMENT for table `pages`
 --
 ALTER TABLE `pages`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
 --
 -- AUTO_INCREMENT for table `permissions`
 --
 ALTER TABLE `permissions`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=42;
+
 --
 -- AUTO_INCREMENT for table `posts`
 --
 ALTER TABLE `posts`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
 --
 -- AUTO_INCREMENT for table `replies`
 --
 ALTER TABLE `replies`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+
 --
 -- AUTO_INCREMENT for table `roles`
 --
 ALTER TABLE `roles`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+
 --
 -- AUTO_INCREMENT for table `settings`
 --
 ALTER TABLE `settings`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+
 --
 -- AUTO_INCREMENT for table `threads`
 --
 ALTER TABLE `threads`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+
 --
 -- AUTO_INCREMENT for table `thread_subscriptions`
 --
 ALTER TABLE `thread_subscriptions`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
---
--- AUTO_INCREMENT for table `translations`
---
-ALTER TABLE `translations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
+
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=45;
+
 --
 -- Constraints for dumped tables
 --
@@ -1066,39 +872,13 @@ ALTER TABLE `categories`
   ADD CONSTRAINT `categories_parent_id_foreign` FOREIGN KEY (`parent_id`) REFERENCES `categories` (`id`) ON DELETE SET NULL ON UPDATE CASCADE;
 
 --
--- Constraints for table `data_rows`
---
-ALTER TABLE `data_rows`
-  ADD CONSTRAINT `data_rows_data_type_id_foreign` FOREIGN KEY (`data_type_id`) REFERENCES `data_types` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
-
---
 -- Constraints for table `menu_items`
 --
 ALTER TABLE `menu_items`
   ADD CONSTRAINT `menu_items_menu_id_foreign` FOREIGN KEY (`menu_id`) REFERENCES `menus` (`id`) ON DELETE CASCADE;
 
 --
--- Constraints for table `permission_role`
---
-ALTER TABLE `permission_role`
-  ADD CONSTRAINT `permission_role_permission_id_foreign` FOREIGN KEY (`permission_id`) REFERENCES `permissions` (`id`) ON DELETE CASCADE,
-  ADD CONSTRAINT `permission_role_role_id_foreign` FOREIGN KEY (`role_id`) REFERENCES `roles` (`id`) ON DELETE CASCADE;
-
---
 -- Constraints for table `thread_subscriptions`
 --
 ALTER TABLE `thread_subscriptions`
   ADD CONSTRAINT `thread_subscriptions_thread_id_foreign` FOREIGN KEY (`thread_id`) REFERENCES `threads` (`id`) ON DELETE CASCADE;
-
---
--- Constraints for table `users`
---
-ALTER TABLE `users`
-  ADD CONSTRAINT `users_role_id_foreign` FOREIGN KEY (`role_id`) REFERENCES `roles` (`id`);
-
---
--- Constraints for table `user_roles`
---
-ALTER TABLE `user_roles`
-  ADD CONSTRAINT `user_roles_role_id_foreign` FOREIGN KEY (`role_id`) REFERENCES `roles` (`id`) ON DELETE CASCADE,
-  ADD CONSTRAINT `user_roles_user_id_foreign` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE;

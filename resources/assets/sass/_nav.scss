@@ -1,12 +1,12 @@
 .navbar{
-    background: #0A0A8D;
+    background: $bg-color;
     padding: 20px 0;
 }
 .navbar-default .navbar-nav > li > a{
-    color : #FFA500;
+    color : $primary-color;
     text-transform: uppercase;
     &:hover{
-        color:$primary-color;
+        color:$base-color;
     }
 }
 .navbar-default .navbar-brand{

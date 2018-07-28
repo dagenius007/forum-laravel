@@ -17,6 +17,8 @@ html {
 
 body {
   margin: 0;
+  padding: 0;
+  /* background: linear-gradient(#F6F8FA, rgba(246,248,250, 0.7)) , url('../img/bg_forum.svg'); */
 }
 
 article,
@@ -3988,8 +3990,7 @@ select[multiple].input-lg,
 .btn:active.focus,
 .btn.active:focus,
 .btn.active.focus {
-  outline: 5px auto -webkit-focus-ring-color;
-  outline-offset: -2px;
+  outline: none;
 }
 
 .btn:hover,
@@ -7308,12 +7309,12 @@ button.list-group-item-danger.active:focus {
 
 .close {
   float: right;
-  font-size: 21px;
+  font-size: 31px;
   font-weight: bold;
   line-height: 1;
   color: #000;
   text-shadow: 0 1px 0 #fff;
-  opacity: 0.2;
+  opacity: 0.8;
   filter: alpha(opacity=20);
 }
 
@@ -7368,6 +7369,7 @@ button.close {
 .modal-open .modal {
   overflow-x: hidden;
   overflow-y: auto;
+  background: rgba(0,0,0,0.5);
 }
 
 .modal-dialog {
@@ -7381,15 +7383,18 @@ button.close {
   background-color: #fff;
   border: 1px solid #999;
   border: 1px solid rgba(0, 0, 0, 0.2);
-  border-radius: 6px;
-  -webkit-box-shadow: 0 3px 9px rgba(0, 0, 0, 0.5);
-  box-shadow: 0 3px 9px rgba(0, 0, 0, 0.5);
+  border-radius: 5px;
+  box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.06), -3px 3px 3px rgba(0, 0, 0, 0.06);
   background-clip: padding-box;
   outline: 0;
+  margin-top: 45%;
+  width: 70%;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .modal-backdrop {
-  position: fixed;
+  /* position: fixed; */
   top: 0;
   right: 0;
   bottom: 0;
@@ -7404,7 +7409,7 @@ button.close {
 }
 
 .modal-backdrop.in {
-  opacity: 0.5;
+  /* opacity: 0.5; */
   filter: alpha(opacity=50);
 }
 
@@ -7424,12 +7429,17 @@ button.close {
 }
 
 .modal-header .close {
-  margin-top: -2px;
+  position: absolute;
+  right: 10px;
+  top: 10px;
 }
 
 .modal-title {
   margin: 0;
   line-height: 1.6;
+  font-size: 16px;
+  font-weight: 600;
+  color: #476ad8;
 }
 
 .modal-body {
@@ -7550,7 +7560,7 @@ button.close {
   padding: 3px 8px;
   color: #fff;
   text-align: center;
-  background-color: #000;
+  background-color: #476ad8 ;
   border-radius: 4px;
 }
 
@@ -7575,7 +7585,7 @@ button.close {
   right: 5px;
   margin-bottom: -5px;
   border-width: 5px 5px 0;
-  border-top-color: #000;
+  border-top-color: #476ad8;
 }
 
 .tooltip.top-right .tooltip-arrow {
@@ -7599,7 +7609,7 @@ button.close {
   right: 0;
   margin-top: -5px;
   border-width: 5px 0 5px 5px;
-  border-left-color: #000;
+  border-left-color: #476ad8;
 }
 
 .tooltip.bottom .tooltip-arrow {

@@ -1,16 +1,26 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
+
+@if(Session::has('message'))
+    <script>toastr.success('<div><i class="em em-slightly_smiling_face"></i> We are happy to have you here. </div>')</script>
+    <script>toastr.success('<div>Feel free to create threads and edit your profile</div>')</script>
+@endif
+
+<div class="container home height">
     <div class="row">
         {{-- {{$threads}} --}}
         <div class="col-md-9">
-            <h1 class="header">LATEST TOPIC</h1>
+                <div class="home-top">
+                    <h1 class="header">LATEST TOPIC</h1>
+                    <p><a href="/threads/create" data-toggle="tooltip" data-placement="left" title="Create Thread"><i class="fa fa-plus"></i></a></p>
+                </div>
+                
                 @forelse($threads as $thread)
                     <div class="col-md-3">
                         <div class="card">
                             <div class="card__profile" style="background-image: url({{ $thread->thread_img ? asset('img/'.$thread->thread_img) : asset('img/forum_bg.jpeg') }})">
-                                <img src="{{ asset('/img/feature-images/bg.jpg')}}" alt="">
+                                <img src="{{ asset('img/users/'.$thread->creator->display_img) }}" alt="">
                             </div>
                             <div class="card__content">
                                 <h3 class="card__content--title"><a href="/threads/{{$thread->channel->name}}/{{$thread->id}}">{{ strlen($thread->title) < 20 ? $thread->title : substr($thread->title ,0,40).'.....' }}</a></h3>
@@ -28,12 +38,12 @@
                             </div>
                         </div>
                     </div>
-                    @empty
+                @empty
                     <p>There are no threads in this category yet. <a href='/threads/create'>Create one!</a></p>
                 @endforelse 
            
         </div>
-        <div class="col-md-3" style="background:#0A0A8D">
+        <div class="col-md-3">
             <h1 class="header header--orange">featured topics</h1>
             @foreach($topics as $topic)
                 <div class="sidebar">
@@ -42,7 +52,7 @@
                     </div>
                     <div class="sidebar__content">
                         <div class="sidebar__content--title">
-                            {{ strlen($topic->title) < 10 ? $topic->title : substr($topic->title ,0,10).'.....' }}
+                                <a href="/threads/{{$topic->channel->name}}/{{$topic->id}}" class="white"> {{ strlen($topic->title) < 10 ? $topic->title : substr($topic->title ,0,10).'.....' }}</a>
                         </div>
                         <div class="sidebar__content--details">
                             {{ $topic->counts() < 10 ? $topic->body : substr($topic->body ,0,20).'.....' }}

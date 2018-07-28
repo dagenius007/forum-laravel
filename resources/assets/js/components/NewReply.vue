@@ -1,24 +1,27 @@
 <template>
-	<div>
-		<div v-if="signedIn">
-			<div class='form-group'>
-				<textarea name='body'
-					id='body'
-					class='form-control'
-					placeholder='Have something to say?'
-					rows='5'
-					required
-					v-model='body'></textarea>
+	<div class="row">
+		<div class="col-md-2"></div>
+		<div class="col-md-10">
+			<div v-if="signedIn">
+				<div class='form-group'>
+					<textarea name='body'
+						id='body'
+						class='form-control'
+						placeholder='Have something to say?'
+						rows='5'
+						required
+						v-model='body'></textarea>
+				</div>
+
+				<button type='submit'
+					class='btn btn--primary'
+					@click='addReply'>Post</button>
 			</div>
 
-			<button type='submit'
-				class='btn btn-default'
-				@click='addReply'>Post</button>
+			<p class='text-center' v-else>
+				Please <a href='/login'>sign in</a> to participate in this discussion
+			</p>
 		</div>
-
-		<p class='text-center' v-else>
-			Please <a href='/login'>sign in</a> to participate in this discussion
-		</p>
 	</div>
 </template>
 
@@ -39,6 +42,7 @@ export default {
 			axios.post(location.pathname + '/replies', {
 				body: this.body
 			}).then(({data})=> {
+				// console.log(location);
 				this.body = '';
 				flash('Your reply has been created');
 				this.$emit('created', data);

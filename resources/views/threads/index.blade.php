@@ -12,7 +12,7 @@
                             <a href='{{ $thread->path() }}'>{{ $thread->title }}</a>
                         </h4>
                         <strong>
-                            <a href={{ $thread->path()}}>{{ $thread->replies_count }} {{ str_plural('reply', $thread->replies_count)}}</a>
+                            {{-- <a href={{ $thread->path()}}>{{ $thread->replies_count }} {{ str_plural('reply', $thread->replies_count)}}</a> --}}
                         </strong>
                     </div>
                 </div>

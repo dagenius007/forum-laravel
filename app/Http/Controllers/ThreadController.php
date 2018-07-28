@@ -69,9 +69,20 @@ class ThreadController extends Controller
                 'channel_id' => request('channel_id'),
                 'title' => request('title'),
                 'thread_img' => $name ,
+                
                 'body' => request('body')
             ]);
-            return redirect()->back()->with('flash', 'Your thread has been published!');
+            return redirect('/');
+        }
+        else{
+            $thread = Thread::create([
+                'user_id' => auth()->id(),
+                'channel_id' => request('channel_id'),
+                'title' => request('title'),
+                'thread_img' => 'forum_bg.jpeg' ,
+                'body' => request('body')
+            ]);
+            return redirect('/');
         }
     }
 

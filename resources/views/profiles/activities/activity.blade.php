@@ -12,18 +12,16 @@
     </div>
 </div> --}}
 <div class="profile__activity">
-    <div>
+    <div id="topic">
         {{ $topic }}
     </div>
     <div>
-        {{ $category }}
+        {{ ucfirst($category) }}
     </div>
     <div>
         {{ $body }}
     </div>
     <div>
-        <img src="{{ asset('img/bg_1.jpg')}}" alt="">
-        <img src="{{ asset('img/bg_1.jpg')}}" alt="">
-        <img src="{{ asset('img/bg_1.jpg')}}" alt="">
+        <img src="{{ asset('img/'.$image) }}" alt="">
     </div>
 </div>

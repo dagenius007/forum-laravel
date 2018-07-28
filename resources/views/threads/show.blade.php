@@ -1,3 +1,4 @@
+<?php use App\Follower; ?>
 @extends('layouts.app')
 
 @section('content')
@@ -10,12 +11,16 @@
             <div class="row">
                 <div class="col-md-2">
                     <div class="topic__profile-pic">
-                        <img src="{{ asset('img/bg_1.jpg') }}" alt="">
+                        <img src="{{ asset('img/users/'.$thread->creator->display_img )}}" alt="{{ $thread->creator->name }}">
                     </div>
-                    <div class="topic__user-info">
-                        <a href="/profiles/{{ $thread->creator->name }}">{{ $thread->creator->name }}</a>
-                        <button class="btn btn--gradient">Follow</button>
-                    </div>
+                    @if( $thread->creator)
+                        <div class="topic__user-info">
+                            <a href="/profiles/{{ $thread->creator->id }}">{{ $thread->creator->name}}</a>
+                            @if(Auth::user()->name != $thread->creator->name )
+                                <following :isfollowing="{{ json_encode(Follower::yourFollowing($thread->creator->id))  }}" :user="{{ json_encode($thread->creator->id)}}"></following>
+                            @endif  
+                        </div>
+                    @endif
                 </div>
                 <div class="col-md-10">
                     <div class="topic__content">
@@ -39,14 +44,16 @@
                         </div>
                         <div class="topic__body">{{ $thread->body }}</div>
                     </div>
-                    
-                    <div class="topic__replies">
-                        <replies @added='repliesCount++' @removed='repliesCount--'></replies>
-                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="topic__replies">
+                    <replies @added='repliesCount++' @removed='repliesCount--'></replies>
                 </div>
             </div>
         </div>
     </div>
 </div>
 </thread-view>
+
 @endsection

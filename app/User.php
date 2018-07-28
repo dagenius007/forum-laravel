@@ -3,9 +3,10 @@
 namespace App;
 
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
-class User extends \TCG\Voyager\Models\User
+class User extends Authenticatable
 {
     // Laravel notification
     // adds a notify method as well as others
@@ -18,7 +19,7 @@ class User extends \TCG\Voyager\Models\User
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'name', 'email', 'password','role_id'
     ];
 
     /**
@@ -46,5 +47,19 @@ class User extends \TCG\Voyager\Models\User
     public function activity()
     {
         return $this->hasMany(Activity::class);
+    }
+
+    public function followers()
+    {
+        return $this->belongsToMany(User::class, 'followers', 'user_id', 'follower_id')->withTimestamps();
+    }
+
+    public function followings()
+    {
+        return $this->belongsToMany(User::class, 'followers', 'follower_id', 'user_id')->withTimestamps();
+    }
+
+    public function role(){
+        return $this->belongsTo('App\Role', 'role_id');
     }
 }

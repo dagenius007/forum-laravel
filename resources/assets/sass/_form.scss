@@ -1,7 +1,136 @@
+
+.form{
+    width: 100%;
+    &__field{
+        margin-bottom: 28px;
+    }
+    &__group{
+        position: relative;
+        // margin-bottom: 10px;
+        & img{
+            background-color: #5b94f7;
+            border-radius: 15px;
+            width: 100%;
+            height: 270px;
+            object-fit: cover;
+            object-position: center;
+            & + div{
+                position: relative;
+                overflow: hidden;
+                top: -40px;
+                width: 100%;
+                background: rgba($color: #000000, $alpha: 0.6);
+                padding:10px;
+                border-width: 1px;
+                border-bottom-right-radius: 15px;
+                border-bottom-left-radius: 15px;
+                color: white;
+                text-align: center;
+                pointer-events: visible;
+                cursor: pointer;
+                &.create{
+                    top: 0px;
+                    border-bottom-right-radius: 0px;
+                    border-bottom-left-radius: 0px;
+                    &{
+                        border-radius: 0px;
+                    }
+                }
+            }
+        }
+    }
+    &__input{
+        width: 100%;
+        border:0px;
+        border-bottom: 1px solid $bg-color;
+        padding: 8px 17px;
+        padding-left: 20px;
+        // padding: 10px 10px 8px 8px;
+        background-color: $primary-color!important;
+        // border-radius: 3px;
+        text-align: left;
+        font-size: 1.1em;
+        &--img{
+            position: absolute;
+            bottom: 0;
+            min-width: 100%;
+            min-height: 100%;
+            font-size: 100px;
+            text-align: right;
+            filter: alpha(opacity=0);
+            opacity: 0;
+            outline: none;
+            background: white;
+            cursor: inherit;
+            display: block;
+        }
+        &:-webkit-autofill{
+            background-color: $primary-color!important;
+        }
+        &:focus{
+            outline: none;
+            border-bottom: 1px solid $bg-color;
+            transition: all 2s;
+        }
+        &::placeholder{
+            color: rgba($color: #000000, $alpha: 0.3);
+            
+        }
+    }
+    &__icon{
+        font-size: 1.1em;    
+    }
+    &__btn{
+        padding: 8px 15px;
+        border-radius: 5px;
+        &--lg{
+            font-size: 1em;
+            text-transform: uppercase;
+            padding: 11px 16px;
+            background-color: $bg-color;
+            color: white;
+        }
+        &--full-width{
+            width: 90%;
+            margin-left : 5%;
+        }
+    }
+    &__select{
+        &--thread{
+            border-bottom: 1px solid $bg-color;
+            padding: 12px 45px 12px 15px;
+            background-color: white;
+            // border-radius: 3px;
+            font-size: 1.4rem;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            appearance: none;
+            position: relative;
+            cursor: pointer;
+        }
+    }
+}
+.fa-user-o:before{
+    content: "\f2c0";
+    position: absolute;
+    bottom: 15px;
+}
+.fa-key:before{
+    content: "\f084";
+    position: absolute;
+    bottom: 15px;
+}
+.fa-envelope-o:before{
+    content: "\f003";
+    position: absolute;
+    bottom: 15px;
+}
+
 .form-control{
     border:1px solid $bg-color;
     &:focus{
-        border-color: #0A0A8D;;
-        box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px #0A0A8D;
+        border-color: $bg-color;
+        // box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px $bg-color;
+        box-shadow: none;
     }
 }

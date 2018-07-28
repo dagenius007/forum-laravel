@@ -25,6 +25,7 @@ export default {
 	created(){
 		// grab replies data that we need for page
 		this.fetch();
+		
 	},
 	methods: {
 		fetch(page){

@@ -177,7 +177,8 @@ return [
         // App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
-        TCG\Voyager\VoyagerServiceProvider::class,
+        // TCG\Voyager\VoyagerServiceProvider::class,
+        Kim\Activity\ActivityServiceProvider::class,
     ],
 
     /*
@@ -226,7 +227,7 @@ return [
         'URL' => Illuminate\Support\Facades\URL::class,
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
-
+        'Activity' => Kim\Activity\ActivityFacade::class,
     ],
 
 ];
