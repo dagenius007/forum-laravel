@@ -6,6 +6,7 @@ use App\Thread;
 use App\Reply;
 use App\Channel;
 use App\Activity;
+use App\FeaturedTopic;
 use App\Filters\ThreadFilters;
 use Illuminate\Http\Request;
 
@@ -52,103 +53,7 @@ class AdminThreadController extends Controller
 
          return back()->with('flash', 'Reply deleted');
     }
-
-    /**
-     * Store a newly created resource in storage.
-     */
-    // public function store(Request $request)
-    // {
-    //     $this->validate($request, [
-    //         'thread_img' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-    //         'title' => 'required',
-    //         'body' => 'required',
-    //         'channel_id' => 'required|exists:channels,id' // laravel validation helpers
-    //     ]);
-
-    //     if ($request->hasFile('thread_img')) {
-            
-    //         $image = $request->file('thread_img');
-    //         echo $image;
-    //         $name = time().'.'.$image->getClientOriginalExtension();
-    //         $destinationPath = public_path('/img');
-    //         $image->move($destinationPath, $name);
-
-    //         // $this->save();
-
-    //         $thread = Thread::create([
-    //             'user_id' => auth()->id(),
-    //             'channel_id' => request('channel_id'),
-    //             'title' => request('title'),
-    //             'thread_img' => $name ,
-    //             'body' => request('body')
-    //         ]);
-    //         return redirect()->back()->with('flash', 'Your thread has been published!');
-    //     }
-    // }
-
-    /**
-     * Display the specified resource.
-     */
-    // public function show($channel, Thread $thread)
-    // {
-    //     // $topics = Thread::orderBy('id' , 'desc')->limit(4)->get();
-    //     return view('threads.show', compact('thread'));
-    // }
-
-    // /**
-    //  * Show the form for editing the specified resource.
-    //  */
-    // public function edit($id)
-    // {   
-    //     $categories = Channel::all();
-    //     $title = Thread::where('id' , $id )->first();
-
-    //     return view('threads.edit' , compact('title' , 'categories'));
-    // }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    // public function update(Request $request , $id)
-    // {
-    //     $this->validate($request, [
-    //         'thread_img' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-    //         'title' => 'required',
-    //         'body' => 'required',
-    //         'channel_id' => 'required|exists:channels,id' // laravel validation helpers
-    //     ]);
-
-    //     if ($request->hasFile('thread_img')) {
-
-    //         $image = $request->file('thread_img');
-    //         echo $image;
-    //         $name = time().'.'.$image->getClientOriginalExtension();
-    //         $destinationPath = public_path('/img');
-    //         $image->move($destinationPath, $name);
-
-    //         Thread::where('id' , $id)->update([
-    //             'channel_id' => request('channel_id'),
-    //             'title' => request('title'),
-    //             'thread_img' => $name ,
-    //             'body' => request('body')
-    //         ]);
-            
-    //         return redirect('/home')->with('flash', 'Your thread has been updated!');
-    //     }
-    //     else{
-    //         Thread::where('id' , $id)->update([
-    //             'channel_id' => request('channel_id'),
-    //             'title' => request('title'),
-    //             'body' => request('body')
-    //         ]);
-            
-    //         return redirect('/home')->with('flash', 'Your thread has been updated!');
-    //     }
-    // }
-
-    /**
-     * Remove the specified resource from storage.
-     */
+    
     public function delete($id)
     {
         $thread = Thread::where('id' , $id )->first();
@@ -169,5 +74,10 @@ class AdminThreadController extends Controller
         }
 
         return $threads->get();
+    }
+
+    public function topics(){
+        $number = FeaturedTopic::all()[0]->number;
+        return view('admin.topics' , compact('number'));
     }
 }

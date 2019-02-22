@@ -1,12 +1,11 @@
-@extends('layouts.app')
-
+@extends('layouts.app') 
 @section('content')
 <div class="container">
     <div class="row height">
         <div class="settings">
             <button data-toggle="modal" data-target="#changepassword" class="btn btn--primary">Change Password</button>
             <div class="settings__card">
-                <form method="POST" action='/profiles/{{$user->id}}/update' enctype="multipart/form-data">
+                <form method="POST" action='/profiles/{{$user->slug}}/update' enctype="multipart/form-data">
                     <div class="col-md-6">
                         {{ csrf_field() }}
                         <div class="form__field">
@@ -22,7 +21,7 @@
                                 <input type='text' class='form__input' name='name' value="{{$user->name}}" placeholder="Name" required>
                             </div>
                         </div>
-                        
+
                         <div class="form__field">
                             <div class='form__group'>
                                 <input type='email' class='form__input' name='email' value="{{ $user->email }}" placeholder="Email" required>
@@ -33,18 +32,18 @@
                                 <button type='submit' class="form__btn form__btn--lg form__btn--full-width">Edit</button>
                             </div>
                         </div>
-                        
+
                         @if(count($errors))
-                            <ul class='alert alert-danger'>
-                                @foreach($errors->all() as $error)
-                                    <li>{{$error}}</li>
-                                @endforeach
-                            </ul>
-                            @endif
-                        
+                        <ul class='alert alert-danger'>
+                            @foreach($errors->all() as $error)
+                            <li>{{$error}}</li>
+                            @endforeach
+                        </ul>
+                        @endif
+
                     </div>
                 </form>
-        </div> 
+            </div>
         </div>
     </div>
 
@@ -62,17 +61,16 @@
                         {{ csrf_field() }}
                         <div class="form__field{{ $errors->has('password') ? ' has-error' : '' }}">
                             <div class="form__group">
-                                <input id="password" type="password" class="form__input" name="password" placeholder="Password" required>
-                                    @if ($errors->has('password'))
-                                        <span class="help-block">
+                                <input id="password" type="password" class="form__input" name="password" placeholder="Password" required>                                @if ($errors->has('password'))
+                                <span class="help-block">
                                             <strong>{{ $errors->first('password') }}</strong>
-                                        </span>
-                                    @endif
+                                        </span> @endif
                             </div>
                         </div>
                         <div class="form__field">
                             <div class="form__group">
-                                <input id="password-confirm" type="password" class="form__input" name="password_confirmation" placeholder="Confrim Password" required>
+                                <input id="password-confirm" type="password" class="form__input" name="password_confirmation" placeholder="Confrim Password"
+                                    required>
                             </div>
                         </div>
                         <div class="form__field">
@@ -82,10 +80,10 @@
                         </div>
                     </form>
                 </div>
-                        
+
             </div>
         </div>
     </div>
-    </div>
+</div>
 </div>
 @endsection

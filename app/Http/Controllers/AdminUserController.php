@@ -7,10 +7,14 @@ use App\User;
 
 class AdminUserController extends Controller
 {
+    // public function __construct()
+    // {
+    //     $this->middleware('auth')->except(['index', 'show']);
+    // }
     
     public function index()
     {
-        $adminusers = User::where('role_id' , 2)->get();
+        $adminusers = User::where('role_id' , 1)->get();
         return view('admin.adminuser.index', compact('adminusers'));
     }
 
@@ -41,11 +45,25 @@ class AdminUserController extends Controller
                 'email' => request('email'),
                 'display_img' => $name ,
                 'password' => bcrypt(request('password')),
-                'role_id' => 2
+                'role_id' => 1,
+                'slug' => '',
+                'blocked' => 0
             ]);
-            return redirect('/admin/adminusers')->with('flash', 'Your user has been published!');
+            return redirect('/admin/adminusers')->with('flash', 'Admin has been created!');
         }
+
+        User::create([
+            'name' => request('name'),
+            'email' => request('email'),
+            'display_img' => 'avatar.png' ,
+            'password' => bcrypt(request('password')),
+            'role_id' => 1,
+            'slug' => '',
+            'blocked' => 0
+        ]);
+        return redirect('/admin/adminusers')->with('flash', 'Admin has been created!');
     }
+
 
     public function edit($id)
     {
@@ -55,7 +73,7 @@ class AdminUserController extends Controller
 
     public function update($id , Request $request)
     {   
-        if($request->password == "" && $request->password_confirmation == ""){
+        
             $this->validate($request, [
                 'name' => 'required',
                 'email' => 'required',
@@ -78,34 +96,33 @@ class AdminUserController extends Controller
                 ]);
                 return redirect('/admin/adminusers')->with('flash', 'Your thread has been published!');
             }
-        }
-        else{
-            $this->validate($request, [
-                'name' => 'required',
-                'email' => 'required',
-                'display_img' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-                'password' => 'required|confirmed',
-            ]);
 
-            if ($request->hasFile('avatar')) {
-            
-                $image = $request->file('avatar');
-                // echo $image;
-                $name = time().'.'.$image->getClientOriginalExtension();
-                $destinationPath = public_path('/img/users');
-                $image->move($destinationPath, $name);
-    
-    
-                User::where('id' , $id )->update([
-                    'name' => request('name'),
-                    'email' => request('email'),
-                    'avatar' => $name ,
-                    'password' => bcrypt(request('password'))
-                ]);
-                return redirect('/admin/adminusers')->with('flash', 'Your thread has been published!');
-            }
-        }
+            User::where('id' , $id )->update([
+                'name' => request('name'),
+                'email' => request('email'),
+                'display_img' => $name ,
+            ]);
+            return redirect('/admin/adminusers')->with('flash', 'Your thread has been published!');
+        
+        
+        
         return redirect('/admin/adminusers')->with('flash', 'Your thread has been published!');
+    }
+
+    function updatePassword($id , Request $request){
+        $this->validate($request , [
+            'password' => 'required|confirmed',
+        ]);
+
+        try{
+            User::where('id' , $id)->update([
+                'password'=> bcrypt(request('password')),
+            ]);
+        } catch(\Exception $e) {
+            // echo $e;
+        }
+        return back();
+
     }
 
     public function delete($id)

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:8889
--- Generation Time: Jul 25, 2018 at 01:37 PM
+-- Generation Time: Feb 20, 2019 at 04:25 PM
 -- Server version: 5.6.38
 -- PHP Version: 7.1.12
 
@@ -39,7 +39,14 @@ INSERT INTO `activities` (`id`, `user_id`, `subject_id`, `subject_type`, `type`,
 (22, 43, 12, 'App\\Thread', 'created_thread', '2018-07-25 02:17:09', '2018-07-25 02:17:09'),
 (23, 43, 13, 'App\\Reply', 'created_reply', '2018-07-25 02:19:33', '2018-07-25 02:19:33'),
 (24, 43, 14, 'App\\Reply', 'created_reply', '2018-07-25 04:46:37', '2018-07-25 04:46:37'),
-(25, 44, 15, 'App\\Reply', 'created_reply', '2018-07-25 05:25:08', '2018-07-25 05:25:08');
+(25, 44, 15, 'App\\Reply', 'created_reply', '2018-07-25 05:25:08', '2018-07-25 05:25:08'),
+(26, 43, 13, 'App\\Thread', 'created_thread', '2018-07-25 11:15:50', '2018-07-25 11:15:50'),
+(27, 43, 14, 'App\\Thread', 'created_thread', '2018-07-25 11:16:23', '2018-07-25 11:16:23'),
+(28, 43, 15, 'App\\Thread', 'created_thread', '2018-07-25 11:16:35', '2018-07-25 11:16:35'),
+(29, 43, 16, 'App\\Thread', 'created_thread', '2018-07-28 03:17:51', '2018-07-28 03:17:51'),
+(30, 47, 16, 'App\\Thread', 'created_thread', '2018-08-29 13:18:32', '2018-08-29 13:18:32'),
+(31, 47, 17, 'App\\Thread', 'created_thread', '2018-09-08 12:23:50', '2018-09-08 12:23:50'),
+(32, 48, 18, 'App\\Thread', 'created_thread', '2018-09-23 15:00:44', '2018-09-23 15:00:44');
 
 -- --------------------------------------------------------
 
@@ -76,28 +83,21 @@ CREATE TABLE `channels` (
   `name` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
   `slug` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `channel_img` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `channels`
 --
 
-INSERT INTO `channels` (`id`, `name`, `slug`, `created_at`, `updated_at`) VALUES
-(5, 'eligendin', 'eligendi', '2018-06-09 11:05:13', '2018-07-18 14:25:33'),
-(6, 'veritatis', 'veritatis', '2018-06-09 11:05:13', '2018-06-09 11:05:13'),
-(8, 'dolor', 'dolor', '2018-06-09 11:05:13', '2018-06-09 11:05:13'),
-(9, 'dolores', 'dolores', '2018-06-09 11:05:13', '2018-06-09 11:05:13'),
-(10, 'nam', 'nam', '2018-06-09 11:05:13', '2018-06-09 11:05:13'),
-(11, 'rerum', 'rerum', '2018-06-09 11:05:13', '2018-06-09 11:05:13'),
-(12, 'molestiae', 'molestiae', '2018-06-09 11:11:10', '2018-06-09 11:11:10'),
-(13, 'dolore', 'dolore', '2018-06-09 11:11:10', '2018-06-09 11:11:10'),
-(14, 'quiaz', 'quia', '2018-06-09 11:13:15', '2018-07-16 20:16:01'),
-(17, 'mollitia', 'mollitia', '2018-06-09 11:13:31', '2018-06-09 11:13:31'),
-(18, 'ut', 'ut', '2018-06-09 11:13:56', '2018-06-09 11:13:56'),
-(19, 'earum', 'earum', '2018-06-09 11:13:56', '2018-06-09 11:13:56'),
-(20, 'Sports', 'Sports', '2018-07-18 15:46:40', '2018-07-18 15:46:40'),
-(21, 'samt', 'samt', '2018-07-18 15:53:26', '2018-07-18 15:53:26');
+INSERT INTO `channels` (`id`, `name`, `slug`, `created_at`, `updated_at`, `channel_img`) VALUES
+(6, 'Generals', 'generals', '2018-06-09 11:05:13', '2019-02-20 13:25:40', ''),
+(10, 'Eduprenure', 'eduprenure', '2018-06-09 11:05:13', '2018-08-29 07:16:52', ''),
+(11, 'Teachers corner', 'teachers-corner', '2018-06-09 11:05:13', '2018-08-29 07:17:13', ''),
+(20, 'Sckool house', 'sckool-house', '2018-07-18 15:46:40', '2018-08-29 07:17:33', 'sport.jpg'),
+(22, 'PTA', 'pta', '2018-07-30 09:40:57', '2018-08-29 07:17:48', 'fashion.jpg'),
+(23, 'School jobs', 'school-jobs', '2018-07-30 09:59:34', '2018-08-29 07:18:05', 'cat_bg.jpg');
 
 -- --------------------------------------------------------
 
@@ -156,6 +156,24 @@ CREATE TABLE `favorites` (
 
 INSERT INTO `favorites` (`id`, `user_id`, `favorited_id`, `favorited_type`, `created_at`, `updated_at`) VALUES
 (1, 1, 1, 'App\\Reply', '2018-06-12 10:04:50', '2018-06-12 10:04:50');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `featured_topics`
+--
+
+CREATE TABLE `featured_topics` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `number` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `featured_topics`
+--
+
+INSERT INTO `featured_topics` (`id`, `number`) VALUES
+(1, 15);
 
 -- --------------------------------------------------------
 
@@ -278,7 +296,13 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (47, '2018_07_21_231043_add_role_id_and_displaypicture_to_users', 9),
 (48, '2018_07_21_232621_create_roles_tables', 9),
 (49, '2018_07_25_030644_drop_display_image_from_users', 10),
-(50, '2018_07_25_030929_add_display_picture_in_users', 11);
+(50, '2018_07_25_030929_add_display_picture_in_users', 11),
+(51, '2018_07_30_091937_add_channel_img_to_channel', 12),
+(52, '2018_07_31_060916_add_name_to_roles', 13),
+(53, '2018_08_29_141056_add_slug_to_thread', 14),
+(54, '2018_08_29_150045_add_slug_to_user', 15),
+(55, '2018_09_23_113830_add_blocked_to_users', 16),
+(57, '2018_09_24_060507_create_featured_topics_table', 17);
 
 -- --------------------------------------------------------
 
@@ -296,148 +320,6 @@ CREATE TABLE `notifications` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `pages`
---
-
-CREATE TABLE `pages` (
-  `id` int(10) UNSIGNED NOT NULL,
-  `author_id` int(11) NOT NULL,
-  `title` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `excerpt` text COLLATE utf8mb4_unicode_ci,
-  `body` text COLLATE utf8mb4_unicode_ci,
-  `image` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `slug` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `meta_description` text COLLATE utf8mb4_unicode_ci,
-  `meta_keywords` text COLLATE utf8mb4_unicode_ci,
-  `status` enum('ACTIVE','INACTIVE') COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'INACTIVE',
-  `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Dumping data for table `pages`
---
-
-INSERT INTO `pages` (`id`, `author_id`, `title`, `excerpt`, `body`, `image`, `slug`, `meta_description`, `meta_keywords`, `status`, `created_at`, `updated_at`) VALUES
-(1, 0, 'Hello World', 'Hang the jib grog grog blossom grapple dance the hempen jig gangway pressgang bilge rat to go on account lugger. Nelsons folly gabion line draught scallywag fire ship gaff fluke fathom case shot. Sea Legs bilge rat sloop matey gabion long clothes run a shot across the bow Gold Road cog league.', '<p>Hello World. Scallywag grog swab Cat o\'nine tails scuttle rigging hardtack cable nipper Yellow Jack. Handsomely spirits knave lad killick landlubber or just lubber deadlights chantey pinnace crack Jennys tea cup. Provost long clothes black spot Yellow Jack bilged on her anchor league lateen sail case shot lee tackle.</p>\n<p>Ballast spirits fluke topmast me quarterdeck schooner landlubber or just lubber gabion belaying pin. Pinnace stern galleon starboard warp carouser to go on account dance the hempen jig jolly boat measured fer yer chains. Man-of-war fire in the hole nipperkin handsomely doubloon barkadeer Brethren of the Coast gibbet driver squiffy.</p>', 'pages/page1.jpg', 'hello-world', 'Yar Meta Description', 'Keyword1, Keyword2', 'ACTIVE', '2018-06-10 14:33:23', '2018-06-10 14:33:23');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `password_resets`
---
-
-CREATE TABLE `password_resets` (
-  `email` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `token` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `created_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Dumping data for table `password_resets`
---
-
-INSERT INTO `password_resets` (`email`, `token`, `created_at`) VALUES
-('joshuaoluikpe@gmail.com', '$2y$10$GNS5zj3jmz7zvhMbKQ9dJes8TTT6PBjuT6uGh5SvAqhjX1SwYmDKS', '2018-07-19 05:52:33');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `permissions`
---
-
-CREATE TABLE `permissions` (
-  `id` int(10) UNSIGNED NOT NULL,
-  `key` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `table_name` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Dumping data for table `permissions`
---
-
-INSERT INTO `permissions` (`id`, `key`, `table_name`, `created_at`, `updated_at`) VALUES
-(1, 'browse_admin', NULL, '2018-06-10 14:33:22', '2018-06-10 14:33:22'),
-(2, 'browse_bread', NULL, '2018-06-10 14:33:22', '2018-06-10 14:33:22'),
-(3, 'browse_database', NULL, '2018-06-10 14:33:22', '2018-06-10 14:33:22'),
-(4, 'browse_media', NULL, '2018-06-10 14:33:22', '2018-06-10 14:33:22'),
-(5, 'browse_compass', NULL, '2018-06-10 14:33:22', '2018-06-10 14:33:22'),
-(6, 'browse_menus', 'menus', '2018-06-10 14:33:22', '2018-06-10 14:33:22'),
-(7, 'read_menus', 'menus', '2018-06-10 14:33:22', '2018-06-10 14:33:22'),
-(8, 'edit_menus', 'menus', '2018-06-10 14:33:22', '2018-06-10 14:33:22'),
-(9, 'add_menus', 'menus', '2018-06-10 14:33:22', '2018-06-10 14:33:22'),
-(10, 'delete_menus', 'menus', '2018-06-10 14:33:22', '2018-06-10 14:33:22'),
-(11, 'browse_roles', 'roles', '2018-06-10 14:33:22', '2018-06-10 14:33:22'),
-(12, 'read_roles', 'roles', '2018-06-10 14:33:22', '2018-06-10 14:33:22'),
-(13, 'edit_roles', 'roles', '2018-06-10 14:33:22', '2018-06-10 14:33:22'),
-(14, 'add_roles', 'roles', '2018-06-10 14:33:22', '2018-06-10 14:33:22'),
-(15, 'delete_roles', 'roles', '2018-06-10 14:33:22', '2018-06-10 14:33:22'),
-(16, 'browse_users', 'users', '2018-06-10 14:33:22', '2018-06-10 14:33:22'),
-(17, 'read_users', 'users', '2018-06-10 14:33:22', '2018-06-10 14:33:22'),
-(18, 'edit_users', 'users', '2018-06-10 14:33:22', '2018-06-10 14:33:22'),
-(19, 'add_users', 'users', '2018-06-10 14:33:22', '2018-06-10 14:33:22'),
-(20, 'delete_users', 'users', '2018-06-10 14:33:22', '2018-06-10 14:33:22'),
-(21, 'browse_settings', 'settings', '2018-06-10 14:33:22', '2018-06-10 14:33:22'),
-(22, 'read_settings', 'settings', '2018-06-10 14:33:22', '2018-06-10 14:33:22'),
-(23, 'edit_settings', 'settings', '2018-06-10 14:33:22', '2018-06-10 14:33:22'),
-(24, 'add_settings', 'settings', '2018-06-10 14:33:22', '2018-06-10 14:33:22'),
-(25, 'delete_settings', 'settings', '2018-06-10 14:33:22', '2018-06-10 14:33:22'),
-(26, 'browse_categories', 'categories', '2018-06-10 14:33:23', '2018-06-10 14:33:23'),
-(27, 'read_categories', 'categories', '2018-06-10 14:33:23', '2018-06-10 14:33:23'),
-(28, 'edit_categories', 'categories', '2018-06-10 14:33:23', '2018-06-10 14:33:23'),
-(29, 'add_categories', 'categories', '2018-06-10 14:33:23', '2018-06-10 14:33:23'),
-(30, 'delete_categories', 'categories', '2018-06-10 14:33:23', '2018-06-10 14:33:23'),
-(31, 'browse_posts', 'posts', '2018-06-10 14:33:23', '2018-06-10 14:33:23'),
-(32, 'read_posts', 'posts', '2018-06-10 14:33:23', '2018-06-10 14:33:23'),
-(33, 'edit_posts', 'posts', '2018-06-10 14:33:23', '2018-06-10 14:33:23'),
-(34, 'add_posts', 'posts', '2018-06-10 14:33:23', '2018-06-10 14:33:23'),
-(35, 'delete_posts', 'posts', '2018-06-10 14:33:23', '2018-06-10 14:33:23'),
-(36, 'browse_pages', 'pages', '2018-06-10 14:33:23', '2018-06-10 14:33:23'),
-(37, 'read_pages', 'pages', '2018-06-10 14:33:23', '2018-06-10 14:33:23'),
-(38, 'edit_pages', 'pages', '2018-06-10 14:33:23', '2018-06-10 14:33:23'),
-(39, 'add_pages', 'pages', '2018-06-10 14:33:23', '2018-06-10 14:33:23'),
-(40, 'delete_pages', 'pages', '2018-06-10 14:33:23', '2018-06-10 14:33:23'),
-(41, 'browse_hooks', NULL, '2018-06-10 14:33:23', '2018-06-10 14:33:23');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `posts`
---
-
-CREATE TABLE `posts` (
-  `id` int(10) UNSIGNED NOT NULL,
-  `author_id` int(11) NOT NULL,
-  `category_id` int(11) DEFAULT NULL,
-  `title` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `seo_title` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `excerpt` text COLLATE utf8mb4_unicode_ci,
-  `body` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `image` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `slug` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `meta_description` text COLLATE utf8mb4_unicode_ci,
-  `meta_keywords` text COLLATE utf8mb4_unicode_ci,
-  `status` enum('PUBLISHED','DRAFT','PENDING') COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'DRAFT',
-  `featured` tinyint(1) NOT NULL DEFAULT '0',
-  `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Dumping data for table `posts`
---
-
-INSERT INTO `posts` (`id`, `author_id`, `category_id`, `title`, `seo_title`, `excerpt`, `body`, `image`, `slug`, `meta_description`, `meta_keywords`, `status`, `featured`, `created_at`, `updated_at`) VALUES
-(1, 0, NULL, 'Lorem Ipsum Post', NULL, 'This is the excerpt for the Lorem Ipsum Post', '<p>This is the body of the lorem ipsum post</p>', 'posts/post1.jpg', 'lorem-ipsum-post', 'This is the meta description', 'keyword1, keyword2, keyword3', 'PUBLISHED', 0, '2018-06-10 14:33:23', '2018-06-10 14:33:23'),
-(2, 0, NULL, 'My Sample Post', NULL, 'This is the excerpt for the sample Post', '<p>This is the body for the sample post, which includes the body.</p>\n                <h2>We can use all kinds of format!</h2>\n                <p>And include a bunch of other stuff.</p>', 'posts/post2.jpg', 'my-sample-post', 'Meta Description for sample post', 'keyword1, keyword2, keyword3', 'PUBLISHED', 0, '2018-06-10 14:33:23', '2018-06-10 14:33:23'),
-(3, 0, NULL, 'Latest Post', NULL, 'This is the excerpt for the latest post', '<p>This is the body for the latest post</p>', 'posts/post3.jpg', 'latest-post', 'This is the meta description', 'keyword1, keyword2, keyword3', 'PUBLISHED', 0, '2018-06-10 14:33:23', '2018-06-10 14:33:23'),
-(4, 0, NULL, 'Yarr Post', NULL, 'Reef sails nipperkin bring a spring upon her cable coffer jury mast spike marooned Pieces of Eight poop deck pillage. Clipper driver coxswain galleon hempen halter come about pressgang gangplank boatswain swing the lead. Nipperkin yard skysail swab lanyard Blimey bilge water ho quarter Buccaneer.', '<p>Swab deadlights Buccaneer fire ship square-rigged dance the hempen jig weigh anchor cackle fruit grog furl. Crack Jennys tea cup chase guns pressgang hearties spirits hogshead Gold Road six pounders fathom measured fer yer chains. Main sheet provost come about trysail barkadeer crimp scuttle mizzenmast brig plunder.</p>\n<p>Mizzen league keelhaul galleon tender cog chase Barbary Coast doubloon crack Jennys tea cup. Blow the man down lugsail fire ship pinnace cackle fruit line warp Admiral of the Black strike colors doubloon. Tackle Jack Ketch come about crimp rum draft scuppers run a shot across the bow haul wind maroon.</p>\n<p>Interloper heave down list driver pressgang holystone scuppers tackle scallywag bilged on her anchor. Jack Tar interloper draught grapple mizzenmast hulk knave cable transom hogshead. Gaff pillage to go on account grog aft chase guns piracy yardarm knave clap of thunder.</p>', 'posts/post4.jpg', 'yarr-post', 'this be a meta descript', 'keyword1, keyword2, keyword3', 'PUBLISHED', 0, '2018-06-10 14:33:23', '2018-06-10 14:33:23');
 
 -- --------------------------------------------------------
 
@@ -471,10 +353,19 @@ INSERT INTO `replies` (`id`, `thread_id`, `user_id`, `body`, `created_at`, `upda
 
 CREATE TABLE `roles` (
   `id` int(10) UNSIGNED NOT NULL,
-  `role` int(10) UNSIGNED NOT NULL,
+  `role` int(10) UNSIGNED DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `name` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `roles`
+--
+
+INSERT INTO `roles` (`id`, `role`, `created_at`, `updated_at`, `name`) VALUES
+(1, NULL, NULL, NULL, 'admin'),
+(2, NULL, NULL, NULL, 'user');
 
 -- --------------------------------------------------------
 
@@ -496,11 +387,7 @@ CREATE TABLE `sessions` (
 --
 
 INSERT INTO `sessions` (`id`, `user_id`, `ip_address`, `user_agent`, `payload`, `last_activity`) VALUES
-('HLnT61d3GdBY4WOULxJGrAPbl46PhUuJI8RVDOIq', NULL, '127.0.0.1', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/67.0.3396.99 Safari/537.36', 'YTo0OntzOjY6Il90b2tlbiI7czo0MDoiRmZtT1V1WkJJeUlSWmF0TVd2VWx5bGo5OUNtNTRBbjd2VlAyd3pTdCI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6MjE6Imh0dHA6Ly9sb2NhbGhvc3Q6ODAwMCI7fXM6MjI6IlBIUERFQlVHQkFSX1NUQUNLX0RBVEEiO2E6MDp7fXM6NjoiX2ZsYXNoIjthOjI6e3M6Mzoib2xkIjthOjA6e31zOjM6Im5ldyI7YTowOnt9fX0=', 1532518417),
-('LAnXaJSrVOR4BZYS4ER5wG0PtZ1EQrrTHGntMpGc', 43, '127.0.0.1', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/67.0.3396.99 Safari/537.36', 'YTo1OntzOjY6Il9mbGFzaCI7YToyOntzOjM6Im9sZCI7YTowOnt9czozOiJuZXciO2E6MDp7fX1zOjY6Il90b2tlbiI7czo0MDoidUhoWFp2d09Nb29jZFZFRGx4TUY2VEt0amx6c0ozYm9kcXRiMjdFZiI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6MjY6Imh0dHA6Ly9sb2NhbGhvc3Q6ODAwMC9ob21lIjt9czo1MDoibG9naW5fd2ViXzU5YmEzNmFkZGMyYjJmOTQwMTU4MGYwMTRjN2Y1OGVhNGUzMDk4OWQiO2k6NDM7czoyMjoiUEhQREVCVUdCQVJfU1RBQ0tfREFUQSI7YTowOnt9fQ==', 1532505184),
-('qZTmf9zI10hdJKKEDBbMunFXKFpHBx9ZMzDbhn8G', 44, '127.0.0.1', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_6) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/11.1.2 Safari/605.1.15', 'YTo1OntzOjY6Il90b2tlbiI7czo0MDoiS1hKVzNHbnR1bzNXNHp4b0llVFNjVGphc1JlZG1iV1BlU01sVDMxUyI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6Mzg6Imh0dHA6Ly9sb2NhbGhvc3Q6ODAwMC90aHJlYWRzL3JlcnVtLzEyIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319czo1MDoibG9naW5fd2ViXzU5YmEzNmFkZGMyYjJmOTQwMTU4MGYwMTRjN2Y1OGVhNGUzMDk4OWQiO2k6NDQ7czoyMjoiUEhQREVCVUdCQVJfU1RBQ0tfREFUQSI7YTowOnt9fQ==', 1532503785),
-('TOuqpblFbXV1tdQAuGhPT68beTT8V4InzKYaNVPY', NULL, '127.0.0.1', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_6) AppleWebKit/605.1.15 (KHTML, like Gecko)', 'YTo0OntzOjY6Il90b2tlbiI7czo0MDoiV3pqNmJFNEdOTGVBcnpTOGZ1WmNrNDY2U1J2YXluc2dLc1hzc3c4biI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6MjE6Imh0dHA6Ly9sb2NhbGhvc3Q6ODAwMCI7fXM6MjI6IlBIUERFQlVHQkFSX1NUQUNLX0RBVEEiO2E6MDp7fXM6NjoiX2ZsYXNoIjthOjI6e3M6Mzoib2xkIjthOjA6e31zOjM6Im5ldyI7YTowOnt9fX0=', 1532499788),
-('VQiRjrCoH81DY8fp2OMuzLuqedmQN5uu88mvTPTs', NULL, '127.0.0.1', '\"Mozilla/5.0 (iPhone; CPU iPhone OS 11_0 like Mac OS X) AppleWebKit/604.1.38 (KHTML, like Gecko) Version/11.0 Mobile/15A372 Safari/604.1\"', 'YTo0OntzOjY6Il90b2tlbiI7czo0MDoiY2V0aUJuUlJ2cjVpbUNNejFCY2RnYXphUVpWU3pwemNKUlAzbm9EZyI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6MjE6Imh0dHA6Ly9sb2NhbGhvc3Q6ODAwMCI7fXM6MjI6IlBIUERFQlVHQkFSX1NUQUNLX0RBVEEiO2E6MDp7fXM6NjoiX2ZsYXNoIjthOjI6e3M6Mzoib2xkIjthOjA6e31zOjM6Im5ldyI7YTowOnt9fX0=', 1532499788);
+('QKcHF1jSZerpJ02B5ti3sdYa9SjHTmnWLdUkpDS6', 49, '127.0.0.1', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/72.0.3626.109 Safari/537.36', 'YTo2OntzOjY6Il90b2tlbiI7czo0MDoiWDhBaTVYTTFYa21QYTZIVTRkSjlVekVJeW8xOHNiZnkyUEZBRWhVaSI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6Mzg6Imh0dHA6Ly9sb2NhbGhvc3Q6ODAwMC9hZG1pbi9hZG1pbnVzZXJzIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319czo1MDoibG9naW5fd2ViXzU5YmEzNmFkZGMyYjJmOTQwMTU4MGYwMTRjN2Y1OGVhNGUzMDk4OWQiO2k6NDk7czozOiJ1cmwiO2E6MTp7czo4OiJpbnRlbmRlZCI7czozODoiaHR0cDovL2xvY2FsaG9zdDo4MDAwL2FkbWluL2FkbWludXNlcnMiO31zOjIyOiJQSFBERUJVR0JBUl9TVEFDS19EQVRBIjthOjA6e319', 1550673947);
 
 -- --------------------------------------------------------
 
@@ -550,16 +437,18 @@ CREATE TABLE `threads` (
   `body` text COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
-  `thread_img` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL
+  `thread_img` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `slug` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `threads`
 --
 
-INSERT INTO `threads` (`id`, `user_id`, `channel_id`, `replies_count`, `title`, `body`, `created_at`, `updated_at`, `thread_img`) VALUES
-(11, 43, 6, 1, 'insight publcis', 'dgsvfgDSVCDSNC SCXbashcxb sadCHSDCLS KDCMSDK', '2018-07-25 02:15:52', '2018-07-25 04:46:37', '1532488552.jpeg'),
-(12, 43, 11, 2, 'Thought', 'ahdsbcsdn cms DNJabdc dmscjnd schjgsvdb', '2018-07-25 02:17:09', '2018-07-25 05:25:08', '1532488629.jpg');
+INSERT INTO `threads` (`id`, `user_id`, `channel_id`, `replies_count`, `title`, `body`, `created_at`, `updated_at`, `thread_img`, `slug`) VALUES
+(16, 47, 10, 0, 'Story of my Life', 'Who am I?', '2018-08-29 13:18:32', '2018-08-29 13:55:48', '1535552312.jpg', 'my-story-life'),
+(17, 47, 10, 0, 'Mr Light', 'aksmdSKMCAFJSKDCMKJD MDS CJsndcj', '2018-09-08 12:23:50', '2018-09-08 12:23:50', '1536413030.jpeg', 'mr-light'),
+(18, 48, 10, 0, 'He helped me', 'Jesus is Lord', '2018-09-23 15:00:44', '2018-09-23 15:00:44', '1537718444.JPG', 'he-helped-me');
 
 -- --------------------------------------------------------
 
@@ -591,16 +480,20 @@ CREATE TABLE `users` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   `role_id` int(11) NOT NULL,
-  `display_img` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'avatar.png'
+  `display_img` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'avatar.png',
+  `slug` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `blocked` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id`, `name`, `email`, `password`, `remember_token`, `settings`, `created_at`, `updated_at`, `role_id`, `display_img`) VALUES
-(43, 'Joshua Oluikpes', 'joshuaoluikpe@gmail.com', '$2y$10$asXqwCJKGNQmAdmhrjnik.2qAe7E/AFH7GlGs3Oa26SfzjlbXs2TC', 'iH4Du0WkCyxWf53791wkX0447y63iK8RYb2Mn3ExX4ruaHjEavtY4RAbi26j', NULL, '2018-07-25 02:11:25', '2018-07-25 02:15:09', 1, '1532488310.jpeg'),
-(44, 'Anga', 'ag@gmail.com', '$2y$10$DDhlxhk/d8AP4aALh.gVnObYDUDhapQP4UDtZU3OO/yANjoPQznbu', NULL, NULL, '2018-07-25 05:24:43', '2018-07-25 05:24:43', 1, 'avatar.png');
+INSERT INTO `users` (`id`, `name`, `email`, `password`, `remember_token`, `settings`, `created_at`, `updated_at`, `role_id`, `display_img`, `slug`, `blocked`) VALUES
+(46, 'Jude', 'jude@gmail.com', '$2y$10$0W88eCVinGUDqbc8SaCZ0erJQORa6pmWu.djCMF4Z5kGJIFP5xrMO', 'RvDgMq1ucLCBf0zjdfk96CLKQ2nDDe4PuZLsFKn0uUeHCux3YVWw12SHuTWW', NULL, '2018-07-31 05:27:15', '2018-07-31 05:27:15', 1, 'avatar.png', '', 0),
+(47, 'Joshua Oluikpe', 'hh@gmail.com', '$2y$10$F2ZWgUXR.dCacnrw66FMU.7Qhac38/0ur1lF8sx0xD22QCVVUC4B2', 'TYQ4tsYW32UnYWD1L3WPdkSkXtwT1glswFb3Zfiq0W1LRkNrBL67zDSDI4TD', NULL, '2018-07-31 05:49:08', '2018-09-23 15:03:51', 2, '1537718631.JPG', 'joshua-oluikpe', 0),
+(48, 'Anga Precious', 'angap@gmail.com', '$2y$10$mkUsfLzaeCO81HmJYbicMuVPfOQYt6A9JzERBSkXb0hQkwkr3ONsK', NULL, NULL, '2018-09-23 14:56:51', '2018-09-23 14:56:51', 2, 'avatar.png', 'anga-precious', 0),
+(49, 'Admin Test', 'admin@test.com', '$2y$10$3YqbpqvbVdPNal1NSWaKOeVon/fCeh9JTzJ4hl3oIGFno2Q9iyvbe', NULL, NULL, '2019-02-20 13:12:34', '2019-02-20 13:12:34', 1, 'avatar.png', '', 0);
 
 --
 -- Indexes for dumped tables
@@ -644,6 +537,12 @@ ALTER TABLE `favorites`
   ADD UNIQUE KEY `favorites_user_id_favorited_id_favorited_type_unique` (`user_id`,`favorited_id`,`favorited_type`);
 
 --
+-- Indexes for table `featured_topics`
+--
+ALTER TABLE `featured_topics`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `followers`
 --
 ALTER TABLE `followers`
@@ -675,33 +574,6 @@ ALTER TABLE `migrations`
 ALTER TABLE `notifications`
   ADD PRIMARY KEY (`id`),
   ADD KEY `notifications_notifiable_id_notifiable_type_index` (`notifiable_id`,`notifiable_type`);
-
---
--- Indexes for table `pages`
---
-ALTER TABLE `pages`
-  ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `pages_slug_unique` (`slug`);
-
---
--- Indexes for table `password_resets`
---
-ALTER TABLE `password_resets`
-  ADD KEY `password_resets_email_index` (`email`);
-
---
--- Indexes for table `permissions`
---
-ALTER TABLE `permissions`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `permissions_key_index` (`key`);
-
---
--- Indexes for table `posts`
---
-ALTER TABLE `posts`
-  ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `posts_slug_unique` (`slug`);
 
 --
 -- Indexes for table `replies`
@@ -757,7 +629,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `activities`
 --
 ALTER TABLE `activities`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
 
 --
 -- AUTO_INCREMENT for table `categories`
@@ -769,7 +641,7 @@ ALTER TABLE `categories`
 -- AUTO_INCREMENT for table `channels`
 --
 ALTER TABLE `channels`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 
 --
 -- AUTO_INCREMENT for table `data_types`
@@ -781,6 +653,12 @@ ALTER TABLE `data_types`
 -- AUTO_INCREMENT for table `favorites`
 --
 ALTER TABLE `favorites`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT for table `featured_topics`
+--
+ALTER TABLE `featured_topics`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
@@ -805,25 +683,7 @@ ALTER TABLE `menu_items`
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=51;
-
---
--- AUTO_INCREMENT for table `pages`
---
-ALTER TABLE `pages`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
-
---
--- AUTO_INCREMENT for table `permissions`
---
-ALTER TABLE `permissions`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=42;
-
---
--- AUTO_INCREMENT for table `posts`
---
-ALTER TABLE `posts`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=58;
 
 --
 -- AUTO_INCREMENT for table `replies`
@@ -835,7 +695,7 @@ ALTER TABLE `replies`
 -- AUTO_INCREMENT for table `roles`
 --
 ALTER TABLE `roles`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `settings`
@@ -847,7 +707,7 @@ ALTER TABLE `settings`
 -- AUTO_INCREMENT for table `threads`
 --
 ALTER TABLE `threads`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT for table `thread_subscriptions`
@@ -859,7 +719,7 @@ ALTER TABLE `thread_subscriptions`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=45;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=50;
 
 --
 -- Constraints for dumped tables

@@ -18,30 +18,30 @@
 export default {
 	props: [
 		'isfollowing',
-		 'user'
+		 'profileuser'
 	],
 	data(){
 		return {
 			isFollowing : this.isfollowing,
-			user :this.user
+			user :this.profileuser
 		}
 	},
 	mounted: function(){
-		console.log(this.user);
+		console.log(this.profileuser);
 	},
 	computed: {
 		
 		endpoint(){
-            return "/profiles/" + this.user + "/follow";
+            return "/profiles/" + this.profileuser + "/follow";
 		}
 	},
 	methods: {
 		follow(){
-			axios.get("/profiles/" + this.user+ "/follow");
+			axios.get("/profiles/" + this.profileuser+ "/follow");
 			this.isFollowing = true;
 		},
 		unfollow(){
-			axios.get("/profiles/" + this.user+ "/unfollow");
+			axios.get("/profiles/" + this.profileuser+ "/unfollow");
 			this.isFollowing = false;
 		}
 	}

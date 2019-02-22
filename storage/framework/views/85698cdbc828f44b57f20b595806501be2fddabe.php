@@ -20,24 +20,26 @@
         <div class="col-md-12">
   
           <div class="box box-primary">
-          <form role="form" action="/admin/categories/create" method="post">
+          <form role="form" action="/admin/categories/store" method="post" enctype="multipart/form-data">
               <?php echo e(csrf_field()); ?>
 
               <div class="box-body">
                 <div class="form-group">
                   <label for="exampleInputEmail1">Category</label>
                   <input type="text" class="form-control"  name="channel">
+
                     <?php if($errors->has('channel')): ?>
                         <span class="help-block">
                             <strong><?php echo e($errors->first('channel')); ?></strong>
                         </span>
                     <?php endif; ?>
+                    <input type="file" class="form-control"  name="channel_img">
                 </div>
               <div class="box-footer">
                 <button type="submit" class="btn btn-primary">Add</button>
               </div>
-            </form>
-          </div>
+          </form>
+        </div>
           
   
       </div>

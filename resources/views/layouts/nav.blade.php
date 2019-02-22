@@ -1,4 +1,3 @@
-
 <nav class="navbar navbar-default navbar-static-top">
     <div class="container">
         <div class="navbar-header">
@@ -13,38 +12,48 @@
 
             <!-- Branding Image -->
             <a class="navbar-brand" href="{{ url('/') }}">
-                {{ config('app.name', 'Forum') }}
+                <img src="{{ asset('img/sckoolhouse.svg') }}" alt="{{ config('app.name', 'Forum') }}">
             </a>
         </div>
 
         <div class="collapse navbar-collapse" id="app-navbar-collapse">
             <!-- Left Side Of Navbar -->
-            
+
 
             <!-- Right Side Of Navbar -->
             <ul class="nav navbar-nav navbar-right">
-                <!-- Authentication Links -->
+                <li><a class="navbar__active" href="{{ route('home') }}">Home</a></li>
                 @if (Auth::guest())
-                    <li><a href="{{ route('home') }}">Home</a></li>
-                    <li><a href="{{ route('login') }}">Categories</a></li>
-                    <li><a href="{{ route('login') }}">Login</a></li>
-                    <li><a href="{{ route('register') }}">Register</a></li>
+
+                <li><a href="{{ route('login') }}">Categories</a></li>
+                <li class="{{ Request::url() == url('/login') ? 'navbar__active' : '' }}"><a href="{{ route('login') }}">Login</a></li>
+                <li><a href="{{ route('register') }}">Register</a></li>
                 @else
-                    <li><a href="{{ route('home') }}">Home</a></li>
-                    <li><a href="{{ route('profile', Auth::user()->id) }}">My Profile</a></li>
-                    {{-- <li><a href="#">{{ Auth::user()->name }} <span class="caret"></span></a></li> --}}
-                    <li>
-                        <a href="{{ route('logout') }}"
-                            onclick="event.preventDefault();
+                <li><a href="{{ route('profile', Auth::user()->slug) }}">My Profile</a></li>
+                <li>
+                    <a href="{{ route('logout') }}" onclick="event.preventDefault();
                                      document.getElementById('logout-form').submit();">
                             Logout
                         </a>
 
-                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                            {{ csrf_field() }}
-                        </form>
-                    </li>
+                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                        {{ csrf_field() }}
+                    </form>
+                </li>
                 @endif
+                <li class="search">
+                    <a href="#">
+                        <form action="/search" method="post">
+                            {{ csrf_field() }}
+                            <div class="search__input">
+                                <input type="text" name="search">
+                                <button type="submit"><i class="fa fa-search"></i></button>
+                            </div>
+                        </form>
+                    </a>
+                </li>
+                {{-- <li class="search_tab"><a href=""><i class="fa fa-search"></i></a></li> --}}
+
             </ul>
         </div>
     </div>

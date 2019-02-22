@@ -12,8 +12,4 @@ class Follower extends Model
         return isset($following);
     }
 
-    // public static function isFollowing($id){
-    //     $following = Follower::where('follower_id' , $id)->where('user_id' , Auth::user()->id)->first();
-    //     return isset($following);
-    // }
 }

@@ -20,7 +20,13 @@ class RedirectIfAuthenticated
         if (Auth::guard($guard)->check()) {
             return redirect('/home');
         }
-
-        return $next($request);
+       
+            return $next($request);
+        
+        // if(Auth::user()->isAdmin() || Auth::user()->isUser()){
+        //     return $next($request);
+        // }
+        // return redirect('/home');
+        
     }
 }

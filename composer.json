@@ -16,7 +16,8 @@
         "laravel/tinker": "~1.0",
         "rap2hpoutre/laravel-log-viewer": "^0.10.4",
         "twbs/bootstrap": "4.0.0",
-        "kim/activity": "^1.1"
+        "kim/activity": "^1.1",
+        "unicodeveloper/laravel-mentions": "1.1.*"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",

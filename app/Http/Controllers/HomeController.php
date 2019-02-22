@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Channel;
 use App\Thread;
+use App\FeaturedTopic;
 
 class HomeController extends Controller
 {
@@ -24,8 +26,15 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $threads = Thread::orderBy('id' , 'desc')->get();
-        $topics = Thread::orderBy('id' , 'desc')->limit(4)->get();
-        return view('welcome', compact('threads' , 'topics'));
+        $number = FeaturedTopic::all()[0]->number;
+        $channels = Channel::orderBy('id' , 'desc')->get();
+        $topics = Thread::orderBy('id' , 'desc')->limit($number)->get();
+        return view('welcome', compact('channels' , 'topics'));
+    }
+
+    public function search(Request $request){
+        $q = $request['search'];
+        $results = Thread::where('title','LIKE','%'.$q.'%')->get();
+        return view('search', compact(['results', 'q']));
     }
 }

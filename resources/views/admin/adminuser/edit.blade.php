@@ -8,6 +8,7 @@
       <h1>
         Edit Admin
       </h1>
+      <button class="btn btn-info" data-toggle="modal" data-target="#changePassword">Change Password</button>
       <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
         <li><a href="#">Forms</a></li>
@@ -59,20 +60,15 @@
                     @endif
                 </div>
 
-                <div class="form-group">
+                {{-- <div class="form-group">
                   <label for="exampleInputEmail1">New Password</label>
                   <input type="password" class="form-control" value="" name="password" placeholder="Not necessary">
-                    
-                    {{-- @if ($errors->has('channel'))
-                        <span class="help-block">
-                            <strong>{{ $errors->first('password') }}</strong>
-                        </span>
-                    @endif --}}
+            
                 </div>
 
                 <div class="form-group">
                   <label for="exampleInputEmail1">Confirm Password</label>
-                  <input type="password" class="form-control" value="" name="password_confirmation" placeholder="Not necessary">
+                  <input type="password" class="form-control" value="" name="password_confirmation" placeholder="Not necessary"> --}}
                   
                     {{-- @if ($errors->has('cpassword'))
                         <span class="help-block">
@@ -89,6 +85,39 @@
   
       </div>
       <!-- /.row -->
+
+      <div class="modal fade" id="changePassword" role="dialog">
+        <div class="modal-dialog">
+        
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 class="modal-title">Change Password
+                    </h3>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <form action="/admin/adminusers/updatepassword/{{ $adminuser->id }}" method="post" id="myform">
+                        {{ csrf_field() }}
+                        <div class="form-group">
+                            <input type="text" name="password" class="form-control" placeholder="Password" required>  
+                        </div>
+                        <div class="form-group">
+                                <input type="text" name="password_confirmation" class="form-control" placeholder="Confirm Password" required>  
+                            </div>
+                        <div class="submit">
+                            <button type="submit" class="btn btn--gradient btn--primary" id="subscribe">CHANGE</button>
+                        </div>
+                    </form>
+                </div>
+                {{-- <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal" style="border:1px solid red">Close</button>
+                </div> --}}
+            </div>
+        
+        </div>
+    </div>
+
     </section>
     <!-- /.content -->
   </div>

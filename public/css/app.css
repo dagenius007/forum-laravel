@@ -7560,7 +7560,7 @@ button.close {
   padding: 3px 8px;
   color: #fff;
   text-align: center;
-  background-color: #476ad8 ;
+  background-color: #0a0a8d ;
   border-radius: 4px;
 }
 
@@ -7585,7 +7585,7 @@ button.close {
   right: 5px;
   margin-bottom: -5px;
   border-width: 5px 5px 0;
-  border-top-color: #476ad8;
+  border-top-color: #0a0a8d;
 }
 
 .tooltip.top-right .tooltip-arrow {
@@ -7609,7 +7609,7 @@ button.close {
   right: 0;
   margin-top: -5px;
   border-width: 5px 0 5px 5px;
-  border-left-color: #476ad8;
+  border-left-color: #0a0a8d;
 }
 
 .tooltip.bottom .tooltip-arrow {
@@ -8359,6 +8359,10 @@ button.close {
   .hidden-print {
     display: none !important;
   }
+}
+
+.add {
+  padding: 10px;
 }
 
 /*# sourceMappingURL=app.css.map */

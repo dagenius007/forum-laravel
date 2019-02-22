@@ -7,35 +7,34 @@
 
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
-        <div class="row">
-                <div class="col-md-8 col-md-offset-2">
-                    @forelse($replies as $reply)
-                    <div class="panel panel-default">
-                        <div class="panel-heading">
-                            <div class='level'>
-                                <h4 class='flex'>
-                                    {{ $reply->title }}
-                                </h4>
-                                <strong>
-                                    {{-- <a href={{ $thread->path()}}>{{ $thread->replies_count }} {{ str_plural('reply', $thread->replies_count)}}</a> --}}
-                                </strong>
-                            </div>
-                        </div>
+      <section class="content-header">
+        <h1>Replies</h1>
+        <ol class="breadcrumb">
+            <li><a href="/admin"><i class="fa fa-dashboard"></i>Home</a></li>
+            <li><a href="#">Replies</a></li>
+        </ol>
+    </section>
+    <div class="content">
+    <div class="row">
+         <div class="col-xs-12">
+            @forelse($replies as $reply)
+                <div class="panel panel-default">
         
                         <div class="panel-body">
                             <div class='body'>
                                 {{ $reply->body }}
                             </div>
                         </div>
-                        <div>
-                            <a href="/admin/threads/replies/delete/{{ $reply->id }}">DELETE</a>
+                        <div class="panel-footer">
+                            <a href="/admin/threads/replies/delete/{{ $reply->id }}" class="btn btn-danger">DELETE</a>
                         </div>
                     </div>
                     @empty
-                    <p>There are no threads yet</p>
+                    <p>There are no replies yet</p>
                     @endforelse
                 </div>
             </div>
+  </div>
   </div>
   @endsection
 

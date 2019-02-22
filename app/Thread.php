@@ -53,6 +53,11 @@ class Thread extends Model
         return $this->belongsTo(Channel::class);
     }
 
+    public function favourite()
+    {
+    	return $this->hasMany(Favorite::class);
+    }
+
     public function addReply($reply)
     {
         // create and save the reply

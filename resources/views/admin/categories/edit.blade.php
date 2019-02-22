@@ -22,21 +22,34 @@
         <div class="col-md-12">
   
           <div class="box box-primary">
-          <form role="form" action="/admin/categories/update/{{ $channel->id }}" method="post">
+          <form role="form" action="/admin/categories/update/{{ $channel->id }}" method="post" enctype="multipart/form-data">
               {{ csrf_field() }}
               <div class="box-body">
                 <div class="form-group">
-                  <label for="exampleInputEmail1">Category</label>
-                  <input type="text" class="form-control" value="{{ $channel->name }}" name="channel">
-                    @if ($errors->has('channel'))
-                        <span class="help-block">
-                            <strong>{{ $errors->first('channel') }}</strong>
-                        </span>
-                    @endif
+                    <label for="exampleInputEmail1">Category</label>
+                  <div class="row">
+                    <div class="col-md-4">
+                        <input type="text" class="form-control" value="{{ $channel->name }}" name="channel">
+                        @if ($errors->has('channel'))
+                            <span class="help-block">
+                                <strong>{{ $errors->first('channel') }}</strong>
+                            </span>
+                        @endif
+                    </div>
+                    <div class="col-md-4">
+                        <input type="file" class="form-control" name="channel_img">
+                    </div>
+                    <div class="col-md-4">
+                        {{-- <div class="box-footer"> --}}
+                            <button type="submit" class="btn btn-primary">Edit</button>
+                          {{-- </div> --}}
+                    </div>
+                  </div>
+                  
+                  
+                    
                 </div>
-              <div class="box-footer">
-                <button type="submit" class="btn btn-primary">Edit</button>
-              </div>
+              
             </form>
           </div>
           

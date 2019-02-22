@@ -17,6 +17,7 @@ Route::get('logs', '\Rap2hpoutre\LaravelLogViewer\LogViewerController@index');
 Route::get('/', 'HomeController@index');
 
 Route::get('/home', 'HomeController@index')->name('home');
+Route::post('/search', 'HomeController@search');
 
 // Login and Logout;
 Auth::routes();
@@ -30,8 +31,8 @@ Route::post('threads/update/{thread}', 'ThreadController@update');
 
 Route::post('/threads/store', 'ThreadController@store');
 
-Route::get('/threads/{channel}', 'ThreadController@index')->middleware('auth');
-Route::get('threads/{channel}/{thread}', 'ThreadController@show')->middleware('auth');
+Route::get('/threads/{channel}', 'ThreadController@index');
+Route::get('threads/{channel}/{slug}', 'ThreadController@show');
 Route::delete('threads/{channel}/{thread}', 'ThreadController@destroy')->middleware('auth');
 Route::post('threads', 'ThreadController@store')->middleware('auth');
 Route::post('/threads/{channel}/{thread}/replies', 'RepliesController@store')->middleware('auth');
@@ -39,8 +40,8 @@ Route::get('/threads/{channel}/{thread}/replies', 'RepliesController@index')->mi
 
 
 // subscribe and unsubscribe
-Route::post('/threads/{channel}/{thread}/subscriptions', 'ThreadSubscriptionsController@store')->middleware('auth');
-Route::delete('/threads/{channel}/{thread}/subscriptions', 'ThreadSubscriptionsController@destroy')->middleware('auth');
+// Route::post('/threads/{channel}/{thread}/subscriptions', 'ThreadSubscriptionsController@store')->middleware('auth');
+// Route::delete('/threads/{channel}/{thread}/subscriptions', 'ThreadSubscriptionsController@destroy')->middleware('auth');
 
 // Replies
 Route::delete('/replies/{reply}', 'RepliesController@destroy')->middleware('auth');
@@ -50,9 +51,9 @@ Route::patch('/replies/{reply}', 'RepliesController@update')->middleware('auth')
 
 
 // Profile
-Route::get('/profiles/{userid}', 'ProfilesController@show')->name('profile')->middleware('auth');
-Route::get('/profiles/{profileId}/edit', 'ProfilesController@edit')->middleware('auth');
-Route::post('/profiles/{profileId}/update', 'ProfilesController@update')->middleware('auth');
+Route::get('/profiles/{user}', 'ProfilesController@show')->name('profile')->middleware('auth');
+Route::get('/profiles/{user}/edit', 'ProfilesController@edit')->middleware('auth');
+Route::post('/profiles/{user}/update', 'ProfilesController@update')->middleware('auth');
 Route::post('/profile/{profileId}/password', 'ProfilesController@password')->middleware('auth');
 
 
@@ -65,41 +66,44 @@ Route::get('profiles/{profileId}/unfollow', 'ProfilesController@unFollowUser')->
 
 
 //Admin Session
+Route::group([ 'prefix' => 'admin', 'middleware' => ['auth']], function() {
+    Route::get('/', function(){
+        return view('admin.index');
+    })->name('admin')->middleware('auth');
 
-Route::get('/admin', function(){
-    return view('admin.index');
+    Route::get('/categories' , function(){
+        return view('admin.categories.index');
+    })->name('categories.index');
+
+    Route::get('/categories/edit/{id}' , 'ChannelController@edit');
+    Route::post('/categories/update/{id}' , 'ChannelController@update');
+    Route::get('/categories/create' , 'ChannelController@create');
+    Route::post('/categories/store' , 'ChannelController@store');
+    Route::get('/categories/delete/{id}' , 'ChannelController@delete');
+
+    Route::get('/users','UserController@index');
+    Route::get('/users/delete/{id}' , 'UserController@delete');
+    Route::get('/users/block/{id}' , 'UserController@block');
+    Route::get('/users/unblock/{id}' , 'UserController@unblock');
+
+
+    Route::get('/threads' , 'AdminThreadController@index');
+    Route::get('/threads/delete/{id}' , 'AdminThreadController@delete');
+    Route::get('/threads/replies/{id}' , 'AdminThreadController@replies');
+    Route::get('/threads/replies/delete/{id}' , 'AdminThreadController@deletereply');
+
+
+    Route::get('/adminusers' , 'AdminUserController@index');
+    Route::get('/adminusers/edit/{id}' , 'AdminUserController@edit');
+    Route::post('/adminusers/update/{id}' , 'AdminUserController@update');
+    Route::post('/adminusers/updatepassword/{id}' , 'AdminUserController@updatePassword');
+    Route::get('/adminusers/create' , 'AdminUserController@create');
+    Route::post('/adminusers/store' , 'AdminUserController@store');
+    Route::get('/adminusers/delete/{id}' , 'AdminUserController@delete');
+
+    Route::get('/featuredtopics' , 'AdminThreadController@topics');
 });
 
-Route::get('/admin/categories' , function(){
-    return view('admin.categories.index');
-})->name('categories.index');
 
-Route::get('/completeprofile' , function(){
-    return view('completeprofile');
-});
-
-
-Route::get('/admin/categories/edit/{id}' , 'ChannelController@edit');
-Route::post('/admin/categories/update/{id}' , 'ChannelController@update');
-Route::get('/admin/categories/add' , 'ChannelController@add');
-Route::post('/admin/categories/create' , 'ChannelController@create');
-Route::get('/admin/categories/delete/{id}' , 'ChannelController@delete');
-
-Route::get('/admin/users' , 'UserController@index');
-Route::get('/admin/users/delete/{id}' , 'UserController@delete');
-
-
-Route::get('/admin/threads' , 'AdminThreadController@index');
-Route::get('/admin/threads/delete/{id}' , 'AdminThreadController@delete');
-Route::get('/admin/threads/replies/{id}' , 'AdminThreadController@replies');
-Route::get('/admin/threads/replies/delete/{id}' , 'AdminThreadController@deletereply');
-
-
-Route::get('/admin/adminusers' , 'AdminUserController@index');
-Route::get('/admin/adminusers/edit/{id}' , 'AdminUserController@edit');
-Route::post('/admin/adminusers/update/{id}' , 'AdminUserController@update');
-Route::get('/admin/adminusers/create' , 'AdminUserController@create');
-Route::post('/admin/adminusers/store' , 'AdminUserController@store');
-Route::get('/admin/adminusers/delete/{id}' , 'AdminUserController@delete');
 // Route::get('/admin/T' , 'ChannelController@delete');
 

@@ -47,6 +47,7 @@ class ThreadController extends Controller
      */
     public function store(Request $request)
     {
+        
         $this->validate($request, [
             'thread_img' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             'title' => 'required',
@@ -57,19 +58,18 @@ class ThreadController extends Controller
         if ($request->hasFile('thread_img')) {
             
             $image = $request->file('thread_img');
-            echo $image;
+            
             $name = time().'.'.$image->getClientOriginalExtension();
             $destinationPath = public_path('/img');
             $image->move($destinationPath, $name);
+           // $this->save();
 
-            // $this->save();
-
-            $thread = Thread::create([
+            Thread::create([
                 'user_id' => auth()->id(),
                 'channel_id' => request('channel_id'),
                 'title' => request('title'),
                 'thread_img' => $name ,
-                
+                'slug' => str_slug($request->title, '-'),
                 'body' => request('body')
             ]);
             return redirect('/');
@@ -80,6 +80,7 @@ class ThreadController extends Controller
                 'channel_id' => request('channel_id'),
                 'title' => request('title'),
                 'thread_img' => 'forum_bg.jpeg' ,
+                'slug' => str_slug($request->title, '-'),
                 'body' => request('body')
             ]);
             return redirect('/');
@@ -89,9 +90,10 @@ class ThreadController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show($channel, Thread $thread)
+    public function show($channel , $slug)
     {
-        // $topics = Thread::orderBy('id' , 'desc')->limit(4)->get();
+        $thread = Thread::where('slug' , $slug)->first();
+
         return view('threads.show', compact('thread'));
     }
 
@@ -101,9 +103,9 @@ class ThreadController extends Controller
     public function edit($id)
     {   
         $categories = Channel::all();
-        $title = Thread::where('id' , $id )->first();
+        $thread = Thread::where('id' , $id )->first();
 
-        return view('threads.edit' , compact('title' , 'categories'));
+        return view('threads.edit' , compact('thread' , 'categories'));
     }
 
     /**

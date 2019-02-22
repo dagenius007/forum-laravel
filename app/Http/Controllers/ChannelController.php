@@ -14,15 +14,42 @@ class ChannelController extends Controller
         return view('admin.categories.index', compact('channels'));
     }
 
-    public function add(){
+    public function create(){
         return view('admin.categories.create');
     }
 
-    public function create(Request $request){
-        $channel = Channel::create([
-            'name' => strtolower(request('channel')),
-            'slug' => strtolower(request('channel')),
+    public function store(Request $request){
+        $this->validate($request, [
+            'channel' => 'required',
+            'channel_img' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048'
         ]);
+
+        $slug = str_slug($request->channel, '-');
+
+        if ($request->hasFile('channel_img')) {
+            $image = $request->file('channel_img');
+            
+            $name = str_slug($request->channel).'.'.$image->getClientOriginalExtension();
+            
+            $destinationPath = public_path('/img/category');
+                
+            $image->move($destinationPath, $name);
+
+            Channel::create([
+                'name' => strtolower(request('channel')),
+                'slug' => $slug,
+                'channel_img' => $name
+            ]);
+
+            return redirect('/admin/categories')->with('flash', 'Category has been created');
+        }
+
+        Channel::create([
+            'name' => strtolower(request('channel')),
+            'slug' => $slug,
+            'channel_img' => 'cat_bg.jpg'
+        ]);
+
         return redirect('/admin/categories')->with('flash', 'Category has been created');
     }
 
@@ -34,9 +61,39 @@ class ChannelController extends Controller
 
     public function update($id , Request $request)
     {
-        Channel::where('id' , $id )->update([
-            'name' => request('channel')
+        $this->validate($request, [
+            'channel' => 'required',
+            'channel_img' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
+
+        $slug = str_slug($request->channel, '-');
+
+        if($request->hasFile('channel_img')){
+
+            $image = $request->file('channel_img');
+            
+            $name = str_slug($request->channel , '-').'.'.$image->getClientOriginalExtension();
+            
+            $destinationPath = public_path('/img/category');
+                
+            $image->move($destinationPath, $name);
+
+           
+
+            Channel::where('id' , $id )->update([
+                'name' => request('channel'),
+                'slug' => $slug,
+                'channel_img' => $name  
+            ]);
+    
+            return redirect('/admin/categories/')->with('flash', 'Category has been updated');
+        }
+
+        Channel::where('id' , $id )->update([
+            'name' => request('channel'),
+            'slug' => $slug
+        ]);
+
         return redirect('/admin/categories/')->with('flash', 'Category has been updated');
     }
 

@@ -1,7 +1,7 @@
 @component('profiles.activities.activity')
 	@slot('topic')
 		{{-- @if($activity->subject) --}}
-		<a href="{{ $activity->subject->thread->path() }}">"{{$activity->subject->thread->title }}"</a>
+		<a href="{{ $activity->subject->thread->slug }}">"{{$activity->subject->thread->title }}"</a>
 	@endslot
 
 	@slot('category')

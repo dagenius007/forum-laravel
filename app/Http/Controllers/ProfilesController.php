@@ -12,9 +12,9 @@ use Session;
 class ProfilesController extends Controller
 {
 	// Show a User's Profile page
-    public function show($user_id)
+    public function show($user)
     {
-		$user = User::findorFail($user_id);
+		$user = User::where('slug' , $user)->first();
     	$followers = $user->followers;
 		$followings = $user->followings;
 		
@@ -23,22 +23,24 @@ class ProfilesController extends Controller
 			'activities' => Activity::feed($user),
 			'followers' => $followers,
 			'followings' => $followings,
-			// 'logged_user_followings'=> $logged_user_followings,
     	]);
 	}
-	public function edit($profileId){
-		$user = User::findorFail($profileId);
+	public function edit($user){
+		$user = User::where('slug' , $user)->first();
 		return view('profiles.edit' , compact('user'));
 	}
 
-	public function update($profileId , Request $request){
-		$user = User::findorFail($profileId);
+	public function update($user , Request $request){
 
+		$user = User::where('slug' , $user)->first();
+		
 		$this->validate($request, [
             'name' => 'required',
             'email' => 'required',
             'display_img' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048'
         ]);
+
+		$slug =  str_slug($request->name, '-');
 
         if ($request->hasFile('display_img')) {
         
@@ -47,25 +49,27 @@ class ProfilesController extends Controller
             $name = time().'.'.$image->getClientOriginalExtension();
             $destinationPath = public_path('/img/users');
             $image->move($destinationPath, $name);
-            // echo $name;
+        
 
-            User::where('id' , $profileId )->update([
-                'name' => request('name'),
+            User::where('id' , $user->id )->update([
+				'name' => request('name'),
+				'slug' => $slug,
                 'email' => request('email'),
                 'display_img' => $name
 			]);
 			Session::flash('edit', 'sucess'); 
 
-			return redirect()->route('profile', ['user' => $user->id]);
+			return redirect()->route('profile', ['user' => $slug]);
 		}
 		else{
-			User::where('id' , $profileId )->update([
-                'name' => request('name'),
+			User::where('id' , $user->id )->update([
+				'name' => request('name'),
+				'slug' => $slug,
                 'email' => request('email')
 			]);
 			Session::flash('edit', 'sucess'); 
 
-            return redirect()->route('profile', ['user' => $user->id]);
+            return redirect()->route('profile', ['user' => $slug]);
 		}
 	}
 

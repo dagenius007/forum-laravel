@@ -20,7 +20,7 @@
         <div class="col-md-12">
   
           <div class="box box-primary">
-          <form role="form" action="/admin/categories/update/<?php echo e($channel->id); ?>" method="post">
+          <form role="form" action="/admin/categories/update/<?php echo e($channel->id); ?>" method="post" enctype="multipart/form-data">
               <?php echo e(csrf_field()); ?>
 
               <div class="box-body">
@@ -32,6 +32,7 @@
                             <strong><?php echo e($errors->first('channel')); ?></strong>
                         </span>
                     <?php endif; ?>
+                    <input type="file" class="form-control" name="channel_img">
                 </div>
               <div class="box-footer">
                 <button type="submit" class="btn btn-primary">Edit</button>

@@ -179,6 +179,8 @@ return [
         App\Providers\RouteServiceProvider::class,
         // TCG\Voyager\VoyagerServiceProvider::class,
         Kim\Activity\ActivityServiceProvider::class,
+        Unicodeveloper\Mention\MentionServiceProvider::class,
+        Collective\Html\HtmlServiceProvider::class,
     ],
 
     /*

@@ -63,9 +63,9 @@ export default {
 		},
 		canUpdate(){
 			return this.authorize(user => this.data.user_id == user.id);
+			
 		},
 		ago(){
-			// momentjs date formating (Z let's moment know it is UTC)
 			return moment(this.data.created_at + 'Z').fromNow();
 		}
 	},

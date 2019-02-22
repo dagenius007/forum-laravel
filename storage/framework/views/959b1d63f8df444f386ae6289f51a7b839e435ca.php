@@ -18,6 +18,6 @@
         </div>
     </div>
     <div class="footer__bottom">
-        Designed by <a href="astract.com">Astract9 </a>, all rights reserved , 2018.
+        Designed by <a href="https://whogohost.com">Whogohost </a>, all rights reserved , 2018.
     </div>
 </div>

@@ -3,7 +3,7 @@
 
 <div class="content-wrapper">
         <!-- Content Header (Page header) -->
-        <a href="/admin/categories/add">Add new</a>
+        <a href="/admin/categories/create">Add new</a>
         <section class="content-header">
           <h1>
            Categories
@@ -26,12 +26,14 @@
                                 <tr>
                                   <th>ID</th>
                                   <th>Category</th>
+                                  <th>Category Image</th>
                                   <th>Actions</th>
                                   <th></th>
                                 </tr>
                                 <?php $__currentLoopData = $channels; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $channel): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                     <tr>
                                     <td><?php echo e($loop->index + 1); ?></td>
+                                    <td><img src="<?php echo e(asset('img/category/'.$channel->channel_img)); ?>" style="border-radius:1em;height:100px"/></td>
                                     <td><?php echo e($channel->name); ?></td>
                                     <td><a href="/admin/categories/edit/<?php echo e($channel->id); ?>" class="btn-lg btn-success">Edit</a></td>
                                     <td><a href="/admin/categories/delete/<?php echo e($channel->id); ?>" class="btn-lg btn-danger">Delete</a></td>

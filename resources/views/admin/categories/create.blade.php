@@ -22,23 +22,31 @@
         <div class="col-md-12">
   
           <div class="box box-primary">
-          <form role="form" action="/admin/categories/create" method="post">
+          <form role="form" action="/admin/categories/store" method="post" enctype="multipart/form-data">
               {{ csrf_field() }}
               <div class="box-body">
                 <div class="form-group">
                   <label for="exampleInputEmail1">Category</label>
-                  <input type="text" class="form-control"  name="channel">
+                  <div class="row">
+                    <div class="col-md-4">
+                      <input type="text" class="form-control"  name="channel">
+
                     @if ($errors->has('channel'))
                         <span class="help-block">
                             <strong>{{ $errors->first('channel') }}</strong>
                         </span>
                     @endif
-                </div>
-              <div class="box-footer">
-                <button type="submit" class="btn btn-primary">Add</button>
+                    </div>
+                    <div class="col-md-4">
+                      <input type="file" class="form-control"  name="channel_img">
+                    </div>
+                    <div class="col-md-4">
+                      <button type="submit" class="btn btn-primary">Add</button>
+                    </div>
+                  </div>
               </div>
-            </form>
-          </div>
+          </form>
+        </div>
           
   
       </div>

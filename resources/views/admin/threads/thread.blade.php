@@ -6,19 +6,26 @@
  
 
   <!-- Content Wrapper. Contains page content -->
-  <div class="content-wrapper">
-        <div class="row">
-                <div class="col-md-8 col-md-offset-2">
+<div class="content-wrapper">
+    <section class="content-header">
+        <h1>Threads</h1>
+        <ol class="breadcrumb">
+            <li><a href="/admin"><i class="fa fa-dashboard"></i>Home</a></li>
+            <li><a href="#">Threads</a></li>
+        </ol>
+    </section>
+    <div class="content">
+
+    
+    <div class="row">
+                <div class="col-xs-12">
                     @forelse($threads as $thread)
                     <div class="panel panel-default">
                         <div class="panel-heading">
                             <div class='level'>
                                 <h4 class='flex'>
-                                    <a href='{{ $thread->path() }}'>{{ $thread->title }}</a>
+                                    {{ $thread->title }}
                                 </h4>
-                                <strong>
-                                    {{-- <a href={{ $thread->path()}}>{{ $thread->replies_count }} {{ str_plural('reply', $thread->replies_count)}}</a> --}}
-                                </strong>
                             </div>
                         </div>
         
@@ -27,9 +34,9 @@
                                 {{ $thread->body }}
                             </div>
                         </div>
-                        <div>
-                        <a href="/admin/threads/delete/{{ $thread->id }}">DELETE</a>
-                        <a href="/admin/threads/replies/{{ $thread->id }}">Replies</a>
+                        <div class="panel-footer">
+                            <a href="/admin/threads/delete/{{ $thread->id }}" class="btn btn-danger">DELETE</a>
+                            <a href="/admin/threads/replies/{{ $thread->id }}" class="btn btn-info">REPLIES</a>
                         </div>
                     </div>
                     @empty
@@ -38,6 +45,7 @@
                 </div>
             </div>
   </div>
+</div>
   @endsection
 
 {{-- </div> --}}

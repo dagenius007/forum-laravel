@@ -1,6 +1,6 @@
 @component('profiles.activities.activity')
 	@slot('topic')
-		<a href="{{ $activity->subject->path() }}">{{ $activity->subject->title }}</a>
+		<a href="/threads/{{ $activity->subject->channel->name }}/{{ $activity->subject->slug }}">{{ $activity->subject->title }}</a>
 	@endslot
 
 	@slot('category')
